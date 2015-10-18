@@ -258,6 +258,7 @@ render();
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>green/red tgvs are oriented radially/axially.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
+    <li>Legacy Paraboloid2/Tubulin.py generates the raw data</li>
     <li><i>You need a WebGL-enabled browser to see this.</i></li>
     </ul>
     </small></small></small>
