@@ -7,16 +7,27 @@ HEAD = """
 		<style>canvas { width: 100%; height: 100% }</style>
 	</head>
 	<body>
-        <h1 align="center">You need a WebGL-enabled browser to see this.</h1>
+        <small> <small> <small>
+        <h1 align="center">Dendritic Tubulin in 1 Retinal Bipolar</h1>
+        Tubulin polymers coursing from dendritic spines to axon.<br />
+        Each tubulin polymer is given a relatively unique color.<br />
+        Dentritic spines act as tgv (transient gradient vector) sensors.<br />
+        Dendritic spines are represented by tiny green and red arrows.<br />
+        A sensed gradient becomes a signal that courses down a tubulin.<br />
+        Not shown here is a required "selector" activating a tgv subset.<br />
+        You need a WebGL-enabled browser to see this.
+        </small> </small> </small>
         <p align="center">
         The general shape is a paraboloid shell.
-        The tips of the tubulin strands are positioned at
-        precise points in a rectangular mesh.
+        The tips of the tubulin strands are positioned
+        precisely at vertices in a rectangular mesh.
+        <!--
         </p><p>
         The red arrows at the tips are z-oriented dendritic transient vector sensors (TVS).
         The green arrows at the tips are r-oriented TVS.
         The sensors feed tubulin strands which traverse from dendritic tips
         to the concentration of strands at the base.
+        -->
         </p><p>
 
         </p>
