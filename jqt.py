@@ -8,9 +8,9 @@ HEAD = """
   </head>
   <body>
     <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
-    <h4 align="center">
+    <h6 align="center">
     Copyright(c)2013-2015 Jonathan D. Lettvin, All Rights Reserved.
-    </h4>
+    </h6>
     <table align="center" border="1"><tr><td>
     <small><small><small>
     <ul>
@@ -18,7 +18,7 @@ HEAD = """
     <li>Tubulin strand tips are at rectangular mesh vertices.</li>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
-    <li>Not shown here is a required "selector" activating a tgv subset.</li>
+    <li>Not shown here is a required tgv subset activating "selector".</li>
     </ul>
     </small></small></small>
     </td><td>
