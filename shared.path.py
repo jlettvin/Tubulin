@@ -208,7 +208,7 @@ camera.position.z = 2;
 camera.position.y = 1;
 camera.position.x = 1;
 
-var rotSpeed = 5e-3;
+var rotSpeed = 2e-3;
 
 function checkRotation() {
     var x = camera.position.x,
