@@ -233,6 +233,36 @@ render();
                 with TAG('style'):
                     TAG.add("canvas { width: 100%; height: 100%; }\n")
             with TAG('body'):
+                TAG.add("""
+    <div align="center"><big><big><big>
+    Dendritic Tubulin (shared path) in One Retinal Bipolar Species
+    </big></big></big><br />
+    <small><small><small>
+    Copyright(c)2013-2015 Jonathan D. Lettvin, All Rights Reserved.
+    </small></small></small>
+    </div>
+    <table align="center" border="1"><tr><td>
+    <small><small><small>
+    <ul>
+    <li>The general shape is a paraboloid shell.</li>
+    <li>Tubulin strand tips are at rectangular mesh vertices.</li>
+    <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
+    <li>Each tubulin polymer is given a relatively unique color.</li>
+    <li>Not shown here is a required tgv subset activating "selector".</li>
+    </ul>
+    </small></small></small>
+    </td><td>
+    <small><small><small>
+    <ul>
+    <li>Dendritic spines are represented by tiny green and red arrows.</li>
+    <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
+    <li>green/red tgvs are oriented radially/axially.</li>
+    <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
+    <li><i>You need a WebGL-enabled browser to see this.</i></li>
+    </ul>
+    </small></small></small>
+    </td></tr></table>
+    """)
                 with TAG('script', src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"):
                     pass
                 with TAG('script', src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"):
