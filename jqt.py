@@ -4,78 +4,77 @@ HEAD = """
 <html>
   <head>
                 <title>Retinal Bipolar Tubulin Polymers</title>
-		<style>canvas { width: 100%; height: 100% }</style>
+                <style>canvas { width: 100%; height: 100% }</style>
   </head>
   <body>
-    <h6 align="center">You need a WebGL-enabled browser to see this.</h6>
     <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
     <small><small><small>
     <ul>
     <li>The general shape is a paraboloid shell.</li>
-    <li>Tips of tubulin strands are positioned
-    precisely at rectangular mesh vertices.</li>
-    <li>Tubulin polymers coursing from dendritic spines to axon.</li>
+    <li>Tubulin strand tips are at rectangular mesh vertices.</li>
+    <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
-    <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>Dendritic spines are represented by tiny green and red arrows.</li>
-    <li>green/red tgvs are radially/axially oriented.</li>
+    <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
+    <li>green/red tgvs are oriented radially/axially.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
     <li>Not shown here is a required "selector" activating a tgv subset.</li>
+    <li><i>You need a WebGL-enabled browser to see this.</i></li>
     </ul>
     </small></small></small>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    <script
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
     </script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js">
+    <script
+        src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js">
     </script>
-		<script>
-			var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
-			var renderer = new THREE.WebGLRenderer();
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			document.body.appendChild(renderer.domElement);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-			camera.position.z = 1;
-			camera.position.y = 1;
-			camera.position.x = 1;
+        camera.position.z = 1;
+        camera.position.y = 1;
+        camera.position.x = 1;
 
-                        var rotSpeed = 1e-3;
+        var rotSpeed = 1e-3;
 
-                        function checkRotation(){
-                            var x = camera.position.x,
-                                y = camera.position.y,
-                                z = camera.position.z;
+        function checkRotation(){
+            var x = camera.position.x,
+                y = camera.position.y,
+                z = camera.position.z;
 
 
-                            //if (keyboard.pressed("left"))
-                            { 
-                                camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-                                camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                            //} else if (keyboard.pressed("right")){
-                            /*
-                                camera.position.x = x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
-                                camera.position.z = z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
-                            */
-                            }
-    
-                            camera.lookAt(scene.position);
-    
-                        } 
+            //if (keyboard.pressed("left"))
+            { 
+                camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+                camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
+            //} else if (keyboard.pressed("right")){
+            /*
+                camera.position.x = x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
+                camera.position.z = z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
+            */
+            }
+
+            camera.lookAt(scene.position);
+
+        } 
 
 """
 
 TAIL = """
-			var render = function () {
-				requestAnimationFrame(render);
+      var render = function () {
+              requestAnimationFrame(render);
+              checkRotation();
+              renderer.render(scene, camera);
+      };
 
-				checkRotation();
-
-				renderer.render(scene, camera);
-			};
-
-			render();
-		</script>
-	</body>
+      render();
+    </script>
+  </body>
 </html>
 """
 
@@ -84,8 +83,8 @@ BODY = """
           {color: 0x0000ff, linewidth: 3});
       var geometry = new THREE.Geometry();
       geometry.vertices.push(
-	      new THREE.Vector3( -2, -2, -2 ),
-	      new THREE.Vector3( +2, +2, +2 )
+              new THREE.Vector3( -2, -2, -2 ),
+              new THREE.Vector3( +2, +2, +2 )
       );
       var line = new THREE.Line( geometry, material );
       scene.add( line );
