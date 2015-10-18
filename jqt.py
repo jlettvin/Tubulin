@@ -9,18 +9,23 @@ HEAD = """
   <body>
     <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
     <small><small><small>
+    <table border="1"><tr><td>
     <ul>
     <li>The general shape is a paraboloid shell.</li>
     <li>Tubulin strand tips are at rectangular mesh vertices.</li>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
+    <li>Not shown here is a required "selector" activating a tgv subset.</li>
+    </ul>
+    </td><td>
+    <ul>
     <li>Dendritic spines are represented by tiny green and red arrows.</li>
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>green/red tgvs are oriented radially/axially.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
-    <li>Not shown here is a required "selector" activating a tgv subset.</li>
     <li><i>You need a WebGL-enabled browser to see this.</i></li>
     </ul>
+    </td></tr></table>
     </small></small></small>
     <script
         src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
