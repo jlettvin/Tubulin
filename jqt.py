@@ -3,35 +3,26 @@
 HEAD = """
 <html>
   <head>
-                <title>Three.js: line segments</title>
+                <title>Retinal Bipolar Tubulin Polymers</title>
 		<style>canvas { width: 100%; height: 100% }</style>
   </head>
   <body>
     <h6 align="center">You need a WebGL-enabled browser to see this.</h6>
-    <h1 align="center">Dendritic Tubulin in 1 Retinal Bipolar</h1>
+    <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
+    <small><small><small>
     <ul>
+    <li>The general shape is a paraboloid shell.</li>
+    <li>Tips of tubulin strands are positioned
+    precisely at rectangular mesh vertices.</li>
     <li>Tubulin polymers coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>Dendritic spines are represented by tiny green and red arrows.</li>
+    <li>green/red tgvs are radially/axially oriented.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
     <li>Not shown here is a required "selector" activating a tgv subset.</li>
     </ul>
-    <p align="center">
-    The general shape is a paraboloid shell.
-    The tips of the tubulin strands are positioned
-    precisely at vertices in a rectangular mesh.
-    <!--
-    </p><p>
-    The red arrows at the tips are z-oriented
-    dendritic transient vector sensors (TVS).
-    The green arrows at the tips are r-oriented TVS.
-    The sensors feed tubulin strands which traverse from dendritic tips
-    to the concentration of strands at the base.
-    -->
-    </p><p>
-
-    </p>
+    </small></small></small>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js">
