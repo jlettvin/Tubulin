@@ -230,5 +230,5 @@ class Tree(object):
 
 seed()
 tree = Tree(tubulin='tubulin.20140330221624', pickle='simple.20140330221624.p')
-with open('bipolar.html', 'w') as target:
+with open('bipolar.unique.path.html', 'w') as target:
     print>>target, tree
