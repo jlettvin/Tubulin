@@ -8,6 +8,9 @@ HEAD = """
   </head>
   <body>
     <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
+    <h4 align="center">
+    Copyright(c)2013-2015 Jonathan D. Lettvin, All Rights Reserved.
+    </h4>
     <table align="center" border="1"><tr><td>
     <small><small><small>
     <ul>
