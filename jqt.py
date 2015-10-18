@@ -7,10 +7,13 @@ HEAD = """
                 <style>canvas { width: 100%; height: 100% }</style>
   </head>
   <body>
-    <h3 align="center">Dendritic Tubulin in One Retinal Bipolar Species</h3>
-    <h6 align="center">
+    <div align="center"><big><big><big>
+    Dendritic Tubulin in One Retinal Bipolar Species
+    </big></big></big><br />
+    <small><small><small>
     Copyright(c)2013-2015 Jonathan D. Lettvin, All Rights Reserved.
-    </h6>
+    </small></small></small>
+    </div>
     <table align="center" border="1"><tr><td>
     <small><small><small>
     <ul>
