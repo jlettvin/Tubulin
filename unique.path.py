@@ -54,7 +54,63 @@ HEAD = """<!doctype html>
         camera.position.y = 1;
         camera.position.x = 1;
 
+        var targetRotationX = 0;
+        var targetRotationOnMouseDownX = 0;
+ 
+        var targetRotationY = 0;
+        var targetRotationOnMouseDownY = 0;
+ 
+        var mouseX = 0;
+        var mouseXOnMouseDown = 0;
+ 
+        var mouseY = 0;
+        var mouseYOnMouseDown = 0;
+ 
+        var windowHalfX = window.innerWidth / 2;
+        var windowHalfY = window.innerHeight / 2;
+ 
+        var finalRotationY;
+
         var rotSpeed = 5e-3;
+
+        function onWindowResize() {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+        }
+
+        function onDocumentMouseDown( event ) {
+            event.preventDefault();
+            document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+            document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+            document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+            mouseXOnMouseDown = event.clientX - windowHalfX;
+            targetRotationOnMouseDownX = targetRotationX;
+            mouseYOnMouseDown = event.clientY - windowHalfY;
+            targetRotationOnMouseDownY = targetRotationY;
+        }
+ 
+        function onDocumentMouseMove( event ) {
+            mouseX = event.clientX - windowHalfX;
+            mouseY = event.clientY - windowHalfY;
+            targetRotationY = targetRotationOnMouseDownY + (mouseY - mouseYOnMouseDown) * 0.02;
+            targetRotationX = targetRotationOnMouseDownX + (mouseX - mouseXOnMouseDown) * 0.02;
+        }
+ 
+        function onDocumentMouseUp( event ) {
+            document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+            document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+            document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+        }
+ 
+        function onDocumentMouseOut( event ) {
+            document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+            document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+            document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+        }
+ 
 
         function checkRotation(){
             var x = camera.position.x,
