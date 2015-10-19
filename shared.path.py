@@ -277,7 +277,7 @@ render();
                     TAG.add("render();\n")
                 pass
 
-        return TAG.final()
+        return TAG.final('<!doctype html>\n')
 
 seed()
 paraboloid = Paraboloid(3)

@@ -81,6 +81,7 @@ class TAG(object):
     residual   = [] # leftover errors from last run survives final() method
     count      = {} # instance of tag (used for error message generation)
     stack      = []
+    doctype    = '<!doctype html>\n'
 
     #--------------------------------------------------------------------------
     @staticmethod
@@ -94,10 +95,20 @@ class TAG(object):
         assert len(TAG.context) == 0 # All contexts should have been closed
         # Prior to clearing class vars, generate output
         # and prefix XML header if a DTD is specified
-        output = ("""\
+        if DTD.startswith('<!doctype'):
+            output = DTD
+        elif DTD:
+            output = """\
 <?xml version="1.0"?>
 <!DOCTYPE report SYSTEM "%s">
-""" % (DTD) if DTD != "" else "") + TAG.buf
+""" % (DTD)
+        else:
+            output = ""
+        output += TAG.buf
+        #output = ("""\
+#<?xml version="1.0"?>
+#<!DOCTYPE report SYSTEM "%s">
+#""" % (DTD) if DTD != "" else "") + TAG.buf
         # Prior to clearing class vars, hold onto errors
         hold = TAG.residual = TAG.errors()
         # Clear class vars

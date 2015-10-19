@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-HEAD = """
+HEAD = """<!doctype html>
 <html>
   <head>
                 <title>Retinal Bipolar Tubulin Polymers</title>
