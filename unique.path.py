@@ -79,24 +79,23 @@ HEAD = """<!doctype html>
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
-            var code = event.which;
             switch (event.which) {
-                case  48: rotX  =    0; break;  // 0
+                case  48: rotX  = 0e-3; break;  // 0
+                case  49: rotX  = 5e-3; break;  // 1
+                case  37:                       // left
+                case  72:                       // H
                 case 104: rotX += 1e-3; break;  // h
+                case  40:                       // down
+                case  74:                       // J
+                case 106:               break;  // j
+                case  38:                       // up
+                case  75:                       // K
+                case 107:               break;  // k
+                case  39:                       // right
+                case  76:                       // H
                 case 108: rotX -= 1e-3; break;  // l
+                default:                break;
             }
-            /*
-            if      (code ==  48) { rotX  =  0.0; } // 0 Stop
-            if (code == 104) { rotX += 1e-3; } // H
-            if (code == 106) {               } // J
-            if (code == 107) {               } // K
-            if (code == 108) { rotX -= 1e-3; } // H
-
-            //else if (code == 72 || code == 104) { rotX += 1e-3; } // H
-            //else if (code == 74 || code == 106) {               } // J
-            //else if (code == 75 || code == 107) {               } // K
-            //else if (code == 76 || code == 108) { rotX -= 1e-3; } // H
-            */
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
