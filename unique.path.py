@@ -147,10 +147,10 @@ class Tree(object):
                         triple = [float(f) for f in triple[1:-1].split(',')]
                         self.line[-1] += [triple,]
         self.Rmat = 'var Rmat = new THREE.LineBasicMaterial('
-        self.Rmat += '{color: 0xff0000, linewidth: 3}'
+        self.Rmat += '{color: 0xff0000, linewidth: 5}'
         self.Rmat += ');\n'
         self.Gmat = 'var Gmat = new THREE.LineBasicMaterial('
-        self.Gmat += '{color: 0x00ff00, linewidth: 3}'
+        self.Gmat += '{color: 0x00ff00, linewidth: 5}'
         self.Gmat += ');\n'
         self.Imat = 'var Imat = new THREE.LineBasicMaterial('
         self.Imat += '{color: 0x777777, linewidth: 3}'
