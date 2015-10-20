@@ -60,9 +60,9 @@ HEAD = """<!doctype html>
         camera.position.x = 1;
 
         var rotSpeed = 5e-3;
-        var dx = 0;
-        var dy = 0;
-        var dz = 0;
+        var dx = 0.0;
+        var dy = 0.0;
+        var dz = 0.0;
 
         function checkRotation(){
             var x = camera.position.x,
@@ -70,18 +70,18 @@ HEAD = """<!doctype html>
                 z = camera.position.z;
 
             if (useKeyboard) {
-                if (dx > 0) {
+                if (dx > 0.0) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
                     camera.position.z =
                         z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                } else if (dx < 0) {
+                } else if (dx < 0.0) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
                     camera.position.z =
                         z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
                 }
-                dx = 0;
+                dx = 0.0;
             } else {
                 camera.position.x =
                     x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
@@ -99,9 +99,9 @@ HEAD = """<!doctype html>
             if        (keyCode == 38) {  // up
             } else if (keyCode == 40) {  // down
             } else if (keyCode == 37) {  // left
-                dx = +1;
+                dx =  1.0;
             } else if (keyCode == 40) {  // right
-                dx = -1;
+                dx = -1.0;
             }
         }
 
