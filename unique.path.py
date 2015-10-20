@@ -79,12 +79,16 @@ HEAD = """<!doctype html>
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
-            var down = event.which;
-            if      (down == 48)                { rotX  =  0.0; } // 0 Stop
-            //else if (down == 72 || down == 104) { rotX += 1e-3; } // H
-            //else if (down == 74 || down == 106) {               } // J
-            //else if (down == 75 || down == 107) {               } // K
-            //else if (down == 76 || down == 108) { rotX -= 1e-3; } // H
+            var code = event.which;
+            if      (code ==  48) { rotX  =  0.0; } // 0 Stop
+            else if (code == 104) { rotX += 1e-3; } // H
+            else if (code == 106) {               } // J
+            else if (code == 107) {               } // K
+            else if (code == 108) { rotX -= 1e-3; } // H
+            //else if (code == 72 || code == 104) { rotX += 1e-3; } // H
+            //else if (code == 74 || code == 106) {               } // J
+            //else if (code == 75 || code == 107) {               } // K
+            //else if (code == 76 || code == 108) { rotX -= 1e-3; } // H
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
