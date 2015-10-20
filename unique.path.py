@@ -168,8 +168,7 @@ class Tree(object):
         x, y, z = point
         radius = sqrt(x**2+y**2)
 
-        self.active = (
-                radius >= self.lower and radius <= self.upper)
+        self.active = (radius >= self.lower and radius <= self.upper)
         #radius, margin = 0.75, 0.010117
         #lower, upper = radius - margin, radius + margin
         #active = (radius > lower and radius < upper)
@@ -191,8 +190,7 @@ class Tree(object):
         text += ',new THREE.Vector3(%f,%f,%f)' % (x+XN,y+YN,z)
         text += ');\n'
 
-        R = 'R' if self.active else 'I'
-        G = 'G' if self.active else 'I'
+        R, G = ('R', 'G') if self.active else ('I', 'I')
         if self.active:
             print "%10.10e" % (radius)
 
