@@ -186,8 +186,7 @@ class Tree(object):
         #print "%10.10e" % (N)
         radius, margin = 0.75, 0.01
         ring = abs(abs(N) - radius)
-        lower, upper = ring - radius, ring + radius
-        matChar = 'G' if (N > lower and N < upper) else 'I'
+        matChar = 'G' if (ring > -margin and ring < +margin) else 'I'
         text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
         text += 'scene.add(G%s);\n' % (seg)
 
