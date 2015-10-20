@@ -23,6 +23,7 @@ HEAD = """<!doctype html>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
     <li>Not shown here is a required tgv subset activating "selector".</li>
+    <li><b>Use 'H' and 'L' to rotate the figure left and right.</b></li>
     </ul>
     </small></small></small>
     </td><td>
@@ -96,11 +97,12 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key 
             var keyCode = event.which;
-            if        (keyCode==38) {  // up
-            } else if (keyCode==40) {  // down
-            } else if (keyCode==37 || keyCode==72 || keyCode==104) {  // left
+            // vi bindings
+            if        (keyCode==72 || keyCode==104) {  // H left
                 dx =  1.0;
-            } else if (keyCode==40 || keyCode==76 || keyCode==108) {  // right
+            } else if (keyCode==74 || keyCode==106) {  // J down
+            } else if (keyCode==75 || keyCode==107) {  // K up
+            } else if (keyCode==76 || keyCode==108) {  // L right
                 dx = -1.0;
             }
         }
