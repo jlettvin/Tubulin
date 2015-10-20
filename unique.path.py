@@ -155,6 +155,7 @@ class Tree(object):
         tubulin = kw.get('tubulin', None)
         pickle = kw.get('pickle', None)
         self.color = {}
+        self.seg = {}
         if pickle:
             #self.line = []
             self.line = load(open(pickle))
@@ -213,7 +214,10 @@ class Tree(object):
 
         x, y, z = point = line[0]  # Outermost point
         radius = sqrt(x**2+y**2)
+        xy = "%f,%f" % (x, y)
         active = (radius >= self.lower and radius <= self.upper)
+
+        # tubulin strands: one color per spine radius
         self.color[radius] = self.color.get(
                 radius,
                 [randint(0, 0x7f) for _ in range(3)])
@@ -242,6 +246,9 @@ class Tree(object):
         text += 'var %s = new THREE.Line(%s,%s);\n' % (seg, geo, mat)
         text += 'scene.add(%s);\n' % (seg)
         text += '\n'
+
+        self.seg[radius] = self.seg.get(radius, {xy: seg})
+        #self.seg[radius][xy] = seg  # Group segments of a radius indexed by xy
 
         return text, geo, seg
 
