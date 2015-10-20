@@ -181,13 +181,14 @@ class Tree(object):
         active = (radius >= self.lower and radius <= self.upper)
 
         if active:
-            R, G, B = (0xff, 0xff, 0xff)
-            print "%10.10e (W,W,W)" % (radius)
+            (R, G, B), W = [0xff] * 3, 5
+            print "tubulin: %10.10e" % (radius)
         else:
-            R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
+            (R, G, B), W = [randint(0, 0x7f) for range(3)], 3
+            #(R, G, B), W = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f), 3
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
-        text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
+        text += '  {color: 0x%02x%02x%02x, linewidth: %d}' % (R, G, B, W)
         text += ');\n'
 
         text += 'var %s = new THREE.Geometry();\n' % (geo)
