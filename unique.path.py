@@ -154,7 +154,7 @@ class Tree(object):
         self.timestamp = datetime.now().isoformat()
         tubulin = kw.get('tubulin', None)
         pickle = kw.get('pickle', None)
-        self.color = []
+        self.color = {}
         if pickle:
             #self.line = []
             self.line = load(open(pickle))
