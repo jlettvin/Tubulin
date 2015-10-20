@@ -45,10 +45,13 @@ HEAD = """<!doctype html>
     </script>
     <script>
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var width = window.innerWidth * 0.95;
+        var height = window.innerHeight * 0.75;
+        var ratio = width / height;
+        var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
 
         var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth*0.95, window.innerHeight*0.75);
+        renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
 
         camera.position.z = 1;
