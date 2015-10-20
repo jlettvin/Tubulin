@@ -29,9 +29,9 @@ HEAD = """<!doctype html>
     <small><small><small>
     <ul>
     <li>This shape has had a horizontal selector applied.</li>
-    <li>Dendritic spines are represented by tiny green and red arrows.</li>
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
-    <li>green/red tgvs are oriented radially/axially.</li>
+    <li>Active dendritic spines are the tiny green and red arrows.</li>
+    <li>green/red (radial/axial) tgvs detect increases in oppositions.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
     <li>Legacy Paraboloid2/Tubulin.py generates the raw data</li>
     </ul>
