@@ -157,17 +157,20 @@ class Tree(object):
         self.Imat += '{color: 0x777777, linewidth: 3}'
         self.Imat += ');\n'
 
+        self.ring, self.margin = 0.75, 0.010117
+        self.lower, self.upper = self.ring-self.margin, self.ring+self.margin
+
     def __call__(self, **kw):
         pass
 
     def transientVectorSensors(self, L, geo, seg, point, scale=2e-2):
         text = ''
         x, y, z = point
-        N = sqrt(x**2+y**2)
+        radius = sqrt(x**2+y**2)
 
-        radius, margin = 0.75, 0.010117
-        lower, upper = radius - margin, radius + margin
-        active = (N > lower and N < upper)
+        #radius, margin = 0.75, 0.010117
+        #lower, upper = radius - margin, radius + margin
+        #active = (radius > lower and radius < upper)
 
         Rgeo = 'var R%s = new THREE.Geometry();\n' % (geo)
         Ggeo = 'var G%s = new THREE.Geometry();\n' % (geo)
@@ -180,16 +183,16 @@ class Tree(object):
         text += ',new THREE.Vector3(%f,%f,%f)' % (x,y,z+scale)
         text += ');\n'
 
-        XN, YN = scale*x/N, scale*y/N
+        XN, YN = scale*x/radius, scale*y/radius
         text += 'G%s.vertices.push(' % (geo)
         text += 'new THREE.Vector3(%f,%f,%f)' % (x,y,z)
         text += ',new THREE.Vector3(%f,%f,%f)' % (x+XN,y+YN,z)
         text += ');\n'
 
-        R = 'R' if active else 'I'
-        G = 'G' if active else 'I'
-        if active:
-            print "%10.10e" % (N)
+        R = 'R' if self.active else 'I'
+        G = 'G' if self.active else 'I'
+        if self.active:
+            print "%10.10e" % (radius)
 
         text += 'var R%s = new THREE.Line(R%s,%cmat);\n' % (seg, geo, R)
         text += 'scene.add(R%s);\n' % (seg)
@@ -222,13 +225,17 @@ class Tree(object):
         text += '%s.vertices.push(' % (geo)
         comma = ''
         for S, segment in enumerate(line):
-            X, Y, Z = segment
-            text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,X,Y,Z)
+            x, y, z = segment  # The last of these will be the outermost radius
+            text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,x, y, z)
             comma = ','
         text += ');\n'
         text += 'var %s = new THREE.Line(%s,%s);\n' % (seg, geo, mat)
         text += 'scene.add(%s);\n' % (seg)
         text += '\n'
+
+        self.radius = sqrt(x**2+y**2)  # This will be the outermost radius
+        self.active = (self.ring >= self.lower and self.ring <= self.upper)
+
         return text, geo, seg
 
     def __str__(self):
