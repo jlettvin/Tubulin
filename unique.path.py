@@ -87,9 +87,7 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
-                //case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
-                //case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
-                case  46: (rotate == 1.0) ? 0.0 : 1.0;  break;  // <SPACE>
+                case  46: rotate=(rotate==1.0)?0.0:1.0; break;  // .
 
                 case  37:                                       // left
                 case  72:                                       // H
