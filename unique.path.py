@@ -184,7 +184,7 @@ class Tree(object):
             (R, G, B), W = [0xff] * 3, 5
             print "tubulin: %10.10e" % (radius)
         else:
-            (R, G, B), W = [randint(0, 0x7f) for range(3)], 3
+            (R, G, B), W = [randint(0, 0x7f) for _ in range(3)], 3
             #(R, G, B), W = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f), 3
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
