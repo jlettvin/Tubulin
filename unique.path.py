@@ -81,10 +81,11 @@ HEAD = """<!doctype html>
             // Get the key code of the pressed key (using vi bindings)
             var code = event.which;
             if      (code ==  48) { rotX  =  0.0; } // 0 Stop
-            else if (code == 104) { rotX += 1e-3; } // H
-            else if (code == 106) {               } // J
-            else if (code == 107) {               } // K
-            else if (code == 108) { rotX -= 1e-3; } // H
+            if (code == 104) { rotX += 1e-3; } // H
+            if (code == 106) {               } // J
+            if (code == 107) {               } // K
+            if (code == 108) { rotX -= 1e-3; } // H
+
             //else if (code == 72 || code == 104) { rotX += 1e-3; } // H
             //else if (code == 74 || code == 106) {               } // J
             //else if (code == 75 || code == 107) {               } // K
