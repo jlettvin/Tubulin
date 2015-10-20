@@ -17,6 +17,7 @@ HEAD = """<!doctype html>
     <table align="center" border="1"><tr><td>
     <small><small><small>
     <ul>
+    <li><i>You need a WebGL-enabled browser to see this.</i></li>
     <li>The general shape is a paraboloid shell.</li>
     <li>Tubulin strand tips are at rectangular mesh vertices.</li>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
@@ -27,12 +28,12 @@ HEAD = """<!doctype html>
     </td><td>
     <small><small><small>
     <ul>
+    <li>This shape has had a horizontal selector applied.</li>
     <li>Dendritic spines are represented by tiny green and red arrows.</li>
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>green/red tgvs are oriented radially/axially.</li>
     <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
     <li>Legacy Paraboloid2/Tubulin.py generates the raw data</li>
-    <li><i>You need a WebGL-enabled browser to see this.</i></li>
     </ul>
     </small></small></small>
     </td></tr></table>
