@@ -60,7 +60,7 @@ HEAD = """<!doctype html>
         camera.position.x = 1;
 
         var rotX = 0e-3;
-        var rotY = 5e-3;
+        var rotY = 0e-3;
         var rotZ = 0e-3;
 
         function checkRotation(){
@@ -68,9 +68,9 @@ HEAD = """<!doctype html>
                 y = camera.position.y,
                 z = camera.position.z;
 
-            var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+            //var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
             var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-            // var cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ);
+            var cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ);
 
             camera.position.y = z * sinX + y * cosX;
             camera.position.z = z * cosX - y * sinX;
@@ -94,10 +94,10 @@ HEAD = """<!doctype html>
                 case 104: rotY += 1e-3; break;  // h
                 case  40:                       // down
                 case  74:                       // J
-                case 106: rotX += 1e-3; break;  // j
+                case 106: rotZ += 1e-3; break;  // j
                 case  38:                       // up
                 case  75:                       // K
-                case 107: rotX -= 1e-3; break;  // k
+                case 107: rotZ -= 1e-3; break;  // k
                 case  39:                       // right
                 case  76:                       // H
                 case 108: rotY -= 1e-3; break;  // l
