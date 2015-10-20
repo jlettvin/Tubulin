@@ -184,8 +184,8 @@ class Tree(object):
         text += 'scene.add(R%s);\n' % (seg)
 
         #print "%10.10e" % (N)
-        margin = abs(abs(N) - 0.75)
-        matChar = 'G' if (margin < 0.01) else 'I'
+        extent, margin = abs(abs(N) - 0.75), 0.001
+        matChar = 'G' if (extent < margin) else 'I'
         text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
         text += 'scene.add(G%s);\n' % (seg)
 
