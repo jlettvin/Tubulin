@@ -69,42 +69,30 @@ HEAD = """<!doctype html>
                 y = camera.position.y,
                 z = camera.position.z;
 
-            if (useKeyboard) {
-                //if (dx > 0.0) {
-                    //camera.position.x =
-                        //x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-                    //camera.position.z =
-                        //z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                //} else if (dx < 0.0) {
-                    //camera.position.x =
-                        //x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
-                    //camera.position.z =
-                        //z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
-                //}
-                rotSpeed += dx * 1e-3;
+            if (dx != 0.0) {
+                rotSpeed += dx;
                 dx = 0.0;
             }
-            {
-                camera.position.x =
-                    x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-                camera.position.z =
-                    z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-            }
+            var cosX = Math.cos(rotSpeed);
+            var sinX = Math.sin(rotSpeed);
+            camera.position.x = x * cosX + z * sinX;
+            camera.position.z = z * cosX - x * sinX;
 
             camera.lookAt(scene.position);
-
         } 
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key 
             var keyCode = event.which;
             // vi bindings
-            if        (keyCode==72 || keyCode==104) {  // H left
-                dx =  1.0;
+            if        (keyCode==48) {                  // 0 Stop
+                rotSpeed = 0.0;
+            } else if (keyCode==72 || keyCode==104) {  // H left
+                dx =  1e-3;
             } else if (keyCode==74 || keyCode==106) {  // J down
             } else if (keyCode==75 || keyCode==107) {  // K up
             } else if (keyCode==76 || keyCode==108) {  // L right
-                dx = -1.0;
+                dx = -1e-3;
             }
         }
 
