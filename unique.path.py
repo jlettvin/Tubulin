@@ -89,6 +89,17 @@ HEAD = """<!doctype html>
 
         } 
 
+        function onDocumentKeyDown(event) { 
+            // Get the key code of the pressed key 
+            var keyCode = event.which;
+            if (keyCode == 38) {  // up
+            } else if (keyCode == 40) {  // down
+            } else if (keyCode == 37) {  // left
+            } else if (keyCode == 40) {  // right
+            }
+        }
+
+        document.addEventListener("keydown", onDocumentKeyDown, false);
 """
 
 TAIL = """
