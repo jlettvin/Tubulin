@@ -82,6 +82,7 @@ HEAD = """<!doctype html>
         } 
 
         function onDocumentKeyDown(event) { 
+            dx = 5e-3;
             // Get the key code of the pressed key 
             var ascii = event.which;
             // vi bindings
