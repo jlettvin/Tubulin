@@ -69,10 +69,6 @@ HEAD = """<!doctype html>
                 y = camera.position.y,
                 z = camera.position.z;
 
-            if (dx != 0.0) {
-                rotSpeed += dx;
-                dx = 0.0;
-            }
             var cosX = Math.cos(rotSpeed);
             var sinX = Math.sin(rotSpeed);
             camera.position.x = x * cosX + z * sinX;
@@ -82,18 +78,16 @@ HEAD = """<!doctype html>
         } 
 
         function onDocumentKeyDown(event) { 
-            dx = 5e-3;
-            // Get the key code of the pressed key 
+            // Get the key code of the pressed key (using vi bindings)
             var ascii = event.which;
-            // vi bindings
             if        (ascii == 48) {                  // 0 Stop
                 rotSpeed = 0.0;
             } else if (ascii == 72 || ascii == 104) {  // H left
-                dx =  1e-3;
+                rotSpeed += 1e-3;
             } else if (ascii == 74 || ascii == 106) {  // J down
             } else if (ascii == 75 || ascii == 107) {  // K up
             } else if (ascii == 76 || ascii == 108) {  // L right
-                dx = -1e-3;
+                rotSpeed += -1e-3;
             }
         }
 
