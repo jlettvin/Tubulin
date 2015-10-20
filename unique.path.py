@@ -70,12 +70,12 @@ HEAD = """<!doctype html>
                 z = camera.position.z;
 
             if (useKeyboard) {
-                if (dx > 1) {
+                if (dx > 0) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
                     camera.position.z =
                         z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                } else if (dx < 1) {
+                } else if (dx < 0) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
                     camera.position.z =
@@ -96,7 +96,7 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key 
             var keyCode = event.which;
-            if (keyCode == 38) {  // up
+            if        (keyCode == 38) {  // up
             } else if (keyCode == 40) {  // down
             } else if (keyCode == 37) {  // left
                 dx = +1;
