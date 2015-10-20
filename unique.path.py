@@ -71,7 +71,7 @@ HEAD = """<!doctype html>
 
             var cosX = Math.cos(rotSpeed);
             var sinX = Math.sin(rotSpeed);
-            camera.position.x = x * cosX + z * sinX;
+            camera.position.x = z * sinX + x * cosX;
             camera.position.z = z * cosX - x * sinX;
 
             camera.lookAt(scene.position);
@@ -79,16 +79,19 @@ HEAD = """<!doctype html>
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
-            var ascii = event.which;
-            if        (ascii == 48) {                  // 0 Stop
+            var down = event.which;
+            rotSpeed = 0.0;
+            /*
+            if        (down == 48) {                 // 0 Stop
                 rotSpeed = 0.0;
-            } else if (ascii == 72 || ascii == 104) {  // H left
+            } else if (down == 72 || down == 104) {  // H left
                 rotSpeed += 1e-3;
-            } else if (ascii == 74 || ascii == 106) {  // J down
-            } else if (ascii == 75 || ascii == 107) {  // K up
-            } else if (ascii == 76 || ascii == 108) {  // L right
+            } else if (down == 74 || down == 106) {  // J down
+            } else if (down == 75 || down == 107) {  // K up
+            } else if (down == 76 || down == 108) {  // L right
                 rotSpeed += -1e-3;
             }
+            */
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
