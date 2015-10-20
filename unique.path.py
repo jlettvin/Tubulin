@@ -49,7 +49,7 @@ HEAD = """<!doctype html>
         var height = window.innerHeight * 0.75;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
-        var useKeyboard = false;
+        var useKeyboard = true;
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
@@ -60,6 +60,9 @@ HEAD = """<!doctype html>
         camera.position.x = 1;
 
         var rotSpeed = 5e-3;
+        var dx = 0;
+        var dy = 0;
+        var dz = 0;
 
         function checkRotation(){
             var x = camera.position.x,
@@ -67,17 +70,18 @@ HEAD = """<!doctype html>
                 z = camera.position.z;
 
             if (useKeyboard) {
-                if (keyboard.pressed("left")) {
+                if (dx > 1) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
                     camera.position.z =
                         z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                } else if (keyboard.pressed("right")) {
+                } else if (dx < 1) {
                     camera.position.x =
                         x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
                     camera.position.z =
                         z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
                 }
+                dx = 0;
             } else {
                 camera.position.x =
                     x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
@@ -95,7 +99,9 @@ HEAD = """<!doctype html>
             if (keyCode == 38) {  // up
             } else if (keyCode == 40) {  // down
             } else if (keyCode == 37) {  // left
+                dx = +1;
             } else if (keyCode == 40) {  // right
+                dx = -1;
             }
         }
 
