@@ -163,6 +163,11 @@ class Tree(object):
         text = ''
         x, y, z = point
         N = sqrt(x**2+y**2)
+
+        radius, margin = 0.75, 0.01
+        lower, upper = radius - margin, radius + margin
+        active = (N > lower and N < upper)
+
         Rgeo = 'var R%s = new THREE.Geometry();\n' % (geo)
         Ggeo = 'var G%s = new THREE.Geometry();\n' % (geo)
         Rseg = 'seg_R%d' % (L)
@@ -180,17 +185,13 @@ class Tree(object):
         text += ',new THREE.Vector3(%f,%f,%f)' % (x+XN,y+YN,z)
         text += ');\n'
 
-        text += 'var R%s = new THREE.Line(R%s,Rmat);\n' % (seg, geo)
+        R = 'R' if active else 'I'
+        G = 'G' if active else 'I'
+
+        text += 'var R%s = new THREE.Line(R%s,%cmat);\n' % (seg, geo, R)
         text += 'scene.add(R%s);\n' % (seg)
 
-        radius, margin = 0.75, 0.01
-        lower, upper = radius - margin, radius + margin
-        active = (N > lower and N < upper)
-        #if active:
-            #print "%10.10e" % (N)
-
-        matChar = 'G' if active else 'I'
-        text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
+        text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, G)
         text += 'scene.add(G%s);\n' % (seg)
 
         return text
@@ -210,7 +211,6 @@ class Tree(object):
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
         R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
-        # value = randint(0, 0x7f7f7f)
         text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
         text += ');\n'
 
