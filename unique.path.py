@@ -100,6 +100,7 @@ TAIL = """
 
       render();
     </script>
+    %s
   </body>
 </html>
 """
@@ -123,12 +124,14 @@ BODY = """
 from cPickle import (load)
 from random import (seed, randint)
 from math import (sqrt)
+from datetime import datetime
 
 import Tag
 
 class Tree(object):
 
     def __init__(self, **kw):
+        self.timestamp = datetime.now().isoformat()
         tubulin = kw.get('tubulin', None)
         pickle = kw.get('pickle', None)
         if pickle:
@@ -265,7 +268,7 @@ class Tree(object):
             self.body += text
             self.body += self.transientVectorSensors(L, geo, seg, line[0])
             self.rule(N=77)
-        self.body += TAIL
+        self.body += TAIL % (self.timestamp)
         return self.body
 
 seed()
