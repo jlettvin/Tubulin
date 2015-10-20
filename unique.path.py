@@ -49,7 +49,7 @@ HEAD = """<!doctype html>
         var height = window.innerHeight * 0.75;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
-        var useKeyboard = false;
+        var useKeyboard = true;
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
@@ -79,8 +79,10 @@ HEAD = """<!doctype html>
                         z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
                 }
             } else {
-                camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-                camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
+                camera.position.x =
+                    x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+                camera.position.z =
+                    z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
             }
 
             camera.lookAt(scene.position);
