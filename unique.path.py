@@ -197,7 +197,6 @@ class Tree(object):
 
         for S, segment in enumerate(line):
             x, y, z = segment
-            X, Y = (max(X, x), max(Y, y))
             text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,x, y, z)
             comma = ','
 
