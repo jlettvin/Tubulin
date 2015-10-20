@@ -83,15 +83,15 @@ HEAD = """<!doctype html>
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key 
-            var keyCode = event.which;
+            var ascii = event.which;
             // vi bindings
-            if        (keyCode==48) {                  // 0 Stop
+            if        (ascii == 48) {                  // 0 Stop
                 rotSpeed = 0.0;
-            } else if (keyCode==72 || keyCode==104) {  // H left
+            } else if (ascii == 72 || ascii == 104) {  // H left
                 dx =  1e-3;
-            } else if (keyCode==74 || keyCode==106) {  // J down
-            } else if (keyCode==75 || keyCode==107) {  // K up
-            } else if (keyCode==76 || keyCode==108) {  // L right
+            } else if (ascii == 74 || ascii == 106) {  // J down
+            } else if (ascii == 75 || ascii == 107) {  // K up
+            } else if (ascii == 76 || ascii == 108) {  // L right
                 dx = -1e-3;
             }
         }
