@@ -235,9 +235,9 @@ class Tree(object):
         text += 'scene.add(%s);\n' % (seg)
         text += '\n'
 
-        self.radius = sqrt(x**2+y**2)  # This will be the outermost radius
-        self.active = (
-                self.radius >= self.lower and self.radius <= self.upper)
+        #self.radius = sqrt(x**2+y**2)  # This will be the outermost radius
+        #self.active = (
+                #self.radius >= self.lower and self.radius <= self.upper)
 
         return text, geo, seg
 
