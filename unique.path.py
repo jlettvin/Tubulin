@@ -163,6 +163,51 @@ class Tree(object):
     def __call__(self, **kw):
         pass
 
+    def rule(self, **kw):
+        N = kw.get('N', 77)
+        text = '//'
+        text += '-'*N
+        text += '\n'
+        return text
+
+    def tubulin(self, L, line):
+        text = ''
+        mat = 'mat_%d' % (L)
+        geo = 'geo_%d' % (L)
+        seg = 'seg_%d' % (L)
+
+        x, y, z = point = line[0]  # Outermost point
+        radius = sqrt(x**2+y**2)
+        active = (radius >= self.lower and radius <= self.upper)
+
+        if active:
+            R, G, B = (0xff, 0xff, 0xff)
+            print "%10.10e (W,W,W)" % (radius)
+        else:
+            R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
+
+        text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
+        text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
+        text += ');\n'
+
+        text += 'var %s = new THREE.Geometry();\n' % (geo)
+
+        text += '%s.vertices.push(' % (geo)
+        comma = ''
+
+        for S, segment in enumerate(line):
+            x, y, z = segment
+            X, Y = (max(X, x), max(Y, y))
+            text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,x, y, z)
+            comma = ','
+
+        text += ');\n'
+        text += 'var %s = new THREE.Line(%s,%s);\n' % (seg, geo, mat)
+        text += 'scene.add(%s);\n' % (seg)
+        text += '\n'
+
+        return text, geo, seg
+
     def transientVectorSensors(self, L, geo, seg, point, scale=2e-2):
         text = ''
         x, y, z = point
@@ -200,54 +245,6 @@ class Tree(object):
         text += 'scene.add(G%s);\n' % (seg)
 
         return text
-
-    def rule(self, **kw):
-        N = kw.get('N', 77)
-        text = '//'
-        text += '-'*N
-        text += '\n'
-        return text
-
-    def tubulin(self, L, line):
-        text = ''
-        mat = 'mat_%d' % (L)
-        geo = 'geo_%d' % (L)
-        seg = 'seg_%d' % (L)
-
-        X, Y = 0.0, 0.0
-        for S, segment in enumerate(line):
-            x, y, z = segment
-            X, Y = (max(X, x), max(Y, y))
-        radius = sqrt(X**2+Y**2)
-        active = (radius >= self.lower and radius <= self.upper)
-
-        if active:
-            R, G, B = (0xff, 0xff, 0xff)
-            print "%10.10e (W,W,W)" % (radius)
-        else:
-            R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
-
-        text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
-        text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
-        text += ');\n'
-
-        text += 'var %s = new THREE.Geometry();\n' % (geo)
-
-        text += '%s.vertices.push(' % (geo)
-        comma = ''
-
-        for S, segment in enumerate(line):
-            x, y, z = segment
-            X, Y = (max(X, x), max(Y, y))
-            text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,x, y, z)
-            comma = ','
-
-        text += ');\n'
-        text += 'var %s = new THREE.Line(%s,%s);\n' % (seg, geo, mat)
-        text += 'scene.add(%s);\n' % (seg)
-        text += '\n'
-
-        return text, geo, seg
 
     def __str__(self):
         self.body = ''
