@@ -168,10 +168,7 @@ class Tree(object):
         x, y, z = point
         radius = sqrt(x**2+y**2)
 
-        self.active = (radius >= self.lower and radius <= self.upper)
-        #radius, margin = 0.75, 0.010117
-        #lower, upper = radius - margin, radius + margin
-        #active = (radius > lower and radius < upper)
+        active = (radius >= self.lower and radius <= self.upper)
 
         Rgeo = 'var R%s = new THREE.Geometry();\n' % (geo)
         Ggeo = 'var G%s = new THREE.Geometry();\n' % (geo)
@@ -190,9 +187,11 @@ class Tree(object):
         text += ',new THREE.Vector3(%f,%f,%f)' % (x+XN,y+YN,z)
         text += ');\n'
 
-        R, G = ('R', 'G') if self.active else ('I', 'I')
-        if self.active:
-            print "%10.10e" % (radius)
+        if active:
+            R, G = ('R', 'G')
+            print "%10.10e (R,G)" % (radius)
+        else:
+            R, G = ('I', 'I')
 
         text += 'var R%s = new THREE.Line(R%s,%cmat);\n' % (seg, geo, R)
         text += 'scene.add(R%s);\n' % (seg)
@@ -224,6 +223,7 @@ class Tree(object):
 
         if active:
             R, G, B = (0xff, 0xff, 0xff)
+            print "%10.10e (W,W,W)" % (radius)
         else:
             R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
 
