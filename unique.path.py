@@ -60,7 +60,7 @@ HEAD = """<!doctype html>
         camera.position.y = 1;
         camera.position.x = 1;
 
-        var rotX = 0e-3, rotY = 5e-3, rotZ = 0e-3;
+        var rotX = 0e-3, rotY = 0e-3, rotZ = 5e-3;
 
         function checkRotation(){
             var x = camera.position.x,
