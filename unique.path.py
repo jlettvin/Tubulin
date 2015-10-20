@@ -89,7 +89,7 @@ HEAD = """<!doctype html>
             switch (event.which) {
                 //case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
                 //case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
-                case 20: (rotate == 1.0) ? 0.0 : 1.0; break;
+                case 32: (rotate == 1.0) ? 0.0 : 1.0;   break;  // <SPACE>
 
                 case  37:                                       // left
                 case  72:                                       // H
