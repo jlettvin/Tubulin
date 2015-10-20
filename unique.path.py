@@ -164,7 +164,7 @@ class Tree(object):
         x, y, z = point
         N = sqrt(x**2+y**2)
 
-        radius, margin = 0.75, 0.04
+        radius, margin = 0.75, 0.035
         lower, upper = radius - margin, radius + margin
         active = (N > lower and N < upper)
 
