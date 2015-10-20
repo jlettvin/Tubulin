@@ -150,8 +150,11 @@ class Tree(object):
         self.Rmat += '{color: 0xff0000, linewidth: 3}'
         self.Rmat += ');\n'
         self.Gmat = 'var Gmat = new THREE.LineBasicMaterial('
-        self.Gmat += '{color: 0xffffff, linewidth: 3}'
+        self.Gmat += '{color: 0x00ff00, linewidth: 3}'
         self.Gmat += ');\n'
+        self.Imat = 'var Imat = new THREE.LineBasicMaterial('
+        self.Imat += '{color: 0x777777, linewidth: 3}'
+        self.Imat += ');\n'
 
     def __call__(self, **kw):
         pass
@@ -180,7 +183,8 @@ class Tree(object):
         text += 'var R%s = new THREE.Line(R%s,Rmat);\n' % (seg, geo)
         text += 'scene.add(R%s);\n' % (seg)
 
-        text += 'var G%s = new THREE.Line(G%s,Gmat);\n' % (seg, geo)
+        matChar = 'G' if (N == 4) else 'I';
+        text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
         text += 'scene.add(G%s);\n' % (seg)
 
         return text
@@ -220,7 +224,7 @@ class Tree(object):
     def __str__(self):
         self.body = ''
         self.body += HEAD
-        self.body += self.Rmat+self.Gmat;
+        self.body += self.Rmat+self.Gmat+self.Imat;
         for L, line in enumerate(self.line):
             text, geo, seg = self.tubulin(L, line)
             self.body += text
