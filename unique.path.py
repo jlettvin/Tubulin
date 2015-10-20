@@ -150,7 +150,7 @@ class Tree(object):
         self.Rmat += '{color: 0xff0000, linewidth: 3}'
         self.Rmat += ');\n'
         self.Gmat = 'var Gmat = new THREE.LineBasicMaterial('
-        self.Gmat += '{color: 0x00ff00, linewidth: 3}'
+        self.Gmat += '{color: 0xffffff, linewidth: 3}'
         self.Gmat += ');\n'
 
     def __call__(self, **kw):
