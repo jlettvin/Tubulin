@@ -209,8 +209,9 @@ class Tree(object):
         seg = 'seg_%d' % (L)
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
-        value = randint(0, 0x7f7f7f)
-        text += '  {color: 0x%06x, linewidth: 3}' % (value)
+        R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
+        # value = randint(0, 0x7f7f7f)
+        text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
         text += ');\n'
 
         text += 'var %s = new THREE.Geometry();\n' % (geo)
