@@ -22,7 +22,7 @@ HEAD = """<!doctype html>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
     <li>Not shown here is a required tgv subset activating "selector".</li>
-    <li><b>Use 'H' and 'L' to rotate the figure left and right.</b></li>
+    <li><b>'&larr;' &amp; '&rarr;' changes rotation speed.</b></li>
     </ul>
     </small></small></small>
     </td><td>
