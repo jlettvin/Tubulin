@@ -18,8 +18,7 @@ HEAD = """<!doctype html>
     <small><small><small>
     <ul>
     <li><i>You need a WebGL-enabled browser to see this.</i></li>
-    <li>The general shape is a paraboloid shell.</li>
-    <li>Tubulin strand tips are at rectangular mesh vertices.</li>
+    <li>Tubulin strand tips are at cartesian paraboloid vertices.</li>
     <li>Tubulin polymers are shown coursing from dendritic spines to axon.</li>
     <li>Each tubulin polymer is given a relatively unique color.</li>
     <li>Not shown here is a required tgv subset activating "selector".</li>
