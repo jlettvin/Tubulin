@@ -168,6 +168,8 @@ class Tree(object):
         x, y, z = point
         radius = sqrt(x**2+y**2)
 
+        self.active = (
+                radius >= self.lower and radius <= self.upper)
         #radius, margin = 0.75, 0.010117
         #lower, upper = radius - margin, radius + margin
         #active = (radius > lower and radius < upper)
