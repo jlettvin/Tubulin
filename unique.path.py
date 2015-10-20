@@ -187,6 +187,8 @@ class Tree(object):
 
         R = 'R' if active else 'I'
         G = 'G' if active else 'I'
+        if active:
+            print "%10.10e" % (N)
 
         text += 'var R%s = new THREE.Line(R%s,%cmat);\n' % (seg, geo, R)
         text += 'scene.add(R%s);\n' % (seg)
