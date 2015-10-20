@@ -215,6 +215,7 @@ class Tree(object):
         geo = 'geo_%d' % (L)
         seg = 'seg_%d' % (L)
 
+        X, Y = 0.0, 0.0
         for S, segment in enumerate(line):
             x, y, z = segment
             X, Y = (max(X, x), max(Y, y))
@@ -233,7 +234,6 @@ class Tree(object):
         text += 'var %s = new THREE.Geometry();\n' % (geo)
 
         text += '%s.vertices.push(' % (geo)
-        X, Y = 0.0, 0.0
         comma = ''
 
         for S, segment in enumerate(line):
