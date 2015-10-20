@@ -70,19 +70,21 @@ HEAD = """<!doctype html>
                 z = camera.position.z;
 
             if (useKeyboard) {
-                if (dx > 0.0) {
-                    camera.position.x =
-                        x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-                    camera.position.z =
-                        z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-                } else if (dx < 0.0) {
-                    camera.position.x =
-                        x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
-                    camera.position.z =
-                        z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
-                }
+                //if (dx > 0.0) {
+                    //camera.position.x =
+                        //x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+                    //camera.position.z =
+                        //z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
+                //} else if (dx < 0.0) {
+                    //camera.position.x =
+                        //x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
+                    //camera.position.z =
+                        //z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
+                //}
+                rotSpeed += dx * 1e-3;
                 dx = 0.0;
-            } else {
+            }
+            {
                 camera.position.x =
                     x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
                 camera.position.z =
