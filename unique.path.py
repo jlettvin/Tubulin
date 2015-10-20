@@ -224,7 +224,7 @@ class Tree(object):
 
         if active:
             (R, G, B), W = [0xff] * 3, 7
-            print "tubulin: %10.10e" % (radius)
+            print "tubulin: %10.10e" % (radius),
         else:
             (R, G, B), W = self.color[radius], 2
 
