@@ -80,11 +80,11 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             var down = event.which;
-            rotSpeed = 0.0;
-            /*
             if        (down == 48) {                 // 0 Stop
                 rotSpeed = 0.0;
-            } else if (down == 72 || down == 104) {  // H left
+            }
+            /*
+            else if (down == 72 || down == 104) {  // H left
                 rotSpeed += 1e-3;
             } else if (down == 74 || down == 106) {  // J down
             } else if (down == 75 || down == 107) {  // K up
