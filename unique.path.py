@@ -59,20 +59,27 @@ HEAD = """<!doctype html>
         camera.position.y = 1;
         camera.position.x = 1;
 
-        var rotX = 5e-3;
-        var dx = 0.0;
-        var dy = 0.0;
-        var dz = 0.0;
+        var rotX = 0e-3;
+        var rotY = 5e-3;
+        var rotZ = 0e-3;
 
         function checkRotation(){
             var x = camera.position.x,
                 y = camera.position.y,
                 z = camera.position.z;
 
-            var cosX = Math.cos(rotX);
-            var sinX = Math.sin(rotX);
-            camera.position.x = z * sinX + x * cosX;
-            camera.position.z = z * cosX - x * sinX;
+            var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+            var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+            // var cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ);
+
+            camera.position.y = z * sinX + y * cosX;
+            camera.position.z = z * cosX - y * sinX;
+
+            camera.position.x = z * sinY + x * cosY;
+            camera.position.z = z * cosY - x * sinY;
+
+            // camera.position.x = y * sinZ + x * cosZ;
+            // camera.position.y = y * cosZ - x * sinZ;
 
             camera.lookAt(scene.position);
         } 
@@ -80,20 +87,20 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
-                case  48: rotX  = 0e-3; break;  // 0
-                case  49: rotX  = 5e-3; break;  // 1
+                case  48: rotY  = 0e-3; break;  // 0
+                case  49: rotY  = 5e-3; break;  // 1
                 case  37:                       // left
                 case  72:                       // H
-                case 104: rotX += 1e-3; break;  // h
+                case 104: rotY += 1e-3; break;  // h
                 case  40:                       // down
                 case  74:                       // J
-                case 106:               break;  // j
+                case 106: rotX += 1e-3; break;  // j
                 case  38:                       // up
                 case  75:                       // K
-                case 107:               break;  // k
+                case 107: rotX -= 1e-3; break;  // k
                 case  39:                       // right
                 case  76:                       // H
-                case 108: rotX -= 1e-3; break;  // l
+                case 108: rotY -= 1e-3; break;  // l
                 default:                break;
             }
         }
