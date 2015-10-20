@@ -233,7 +233,7 @@ class Tree(object):
 
         if active:
             R, G = ('R', 'G')
-            print " spine: %10.10e (R,G)" % (radius)
+            print "  spine: %10.10e (R,G)" % (radius)
         else:
             R, G = ('I', 'I')
 
