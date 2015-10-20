@@ -32,7 +32,7 @@ HEAD = """<!doctype html>
     <li>Dentritic spines act as tgvs (transient gradient vector sensors).</li>
     <li>Active dendritic spines are the tiny green and red arrows.</li>
     <li>green/red (radial/axial) tgvs detect increases in oppositions.</li>
-    <li>A sensed gradient becomes a signal that courses down a tubulin.</li>
+    <li>A sensed gradient becomes a signal coursing down a white tubulin.</li>
     <li>Legacy Paraboloid2/Tubulin.py generates the raw data</li>
     </ul>
     </small></small></small>
@@ -48,7 +48,7 @@ HEAD = """<!doctype html>
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
         var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(window.innerWidth*0.95, window.innerHeight*0.75);
         document.body.appendChild(renderer.domElement);
 
         camera.position.z = 1;
