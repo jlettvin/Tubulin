@@ -186,8 +186,8 @@ class Tree(object):
         radius, margin = 0.75, 0.01
         lower, upper = radius - margin, radius + margin
         active = (N > lower and N < upper)
-        if active:
-            print "%10.10e" % (N)
+        #if active:
+            #print "%10.10e" % (N)
 
         matChar = 'G' if active else 'I'
         text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
@@ -209,7 +209,7 @@ class Tree(object):
         seg = 'seg_%d' % (L)
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
-        value = randint(0, 0xffffff)
+        value = randint(0, 0x7f7f7f)
         text += '  {color: 0x%06x, linewidth: 3}' % (value)
         text += ');\n'
 
