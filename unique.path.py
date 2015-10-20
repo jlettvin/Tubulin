@@ -96,11 +96,11 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key 
             var keyCode = event.which;
-            if        (keyCode == 38) {  // up
-            } else if (keyCode == 40) {  // down
-            } else if (keyCode == 37) {  // left
+            if        (keyCode==38) {  // up
+            } else if (keyCode==40) {  // down
+            } else if (keyCode==37 || keyCode==72 || keyCode==104) {  // left
                 dx =  1.0;
-            } else if (keyCode == 40) {  // right
+            } else if (keyCode==40 || keyCode==76 || keyCode==108) {  // right
                 dx = -1.0;
             }
         }
