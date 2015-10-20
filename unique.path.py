@@ -234,7 +234,8 @@ class Tree(object):
         text += '\n'
 
         self.radius = sqrt(x**2+y**2)  # This will be the outermost radius
-        self.active = (self.ring >= self.lower and self.ring <= self.upper)
+        self.active = (
+                self.radius >= self.lower and self.radius <= self.upper)
 
         return text, geo, seg
 
