@@ -87,18 +87,23 @@ HEAD = """<!doctype html>
             switch (event.which) {
                 case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
                 case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
+
                 case  37:                                       // left
                 case  72:                                       // H
                 case 104: rotX += 1e-3;                 break;  // h
+
                 case  40:                                       // down
                 case  74:                                       // J
                 case 106: rotZ += 1e-3;                 break;  // j
+
                 case  38:                                       // up
                 case  75:                                       // K
                 case 107: rotZ -= 1e-3;                 break;  // k
+
                 case  39:                                       // right
                 case  76:                                       // H
                 case 108: rotX -= 1e-3;                 break;  // l
+
                 default:                                break;
             }
         }
@@ -149,6 +154,7 @@ class Tree(object):
         self.timestamp = datetime.now().isoformat()
         tubulin = kw.get('tubulin', None)
         pickle = kw.get('pickle', None)
+        self.color = []
         if pickle:
             #self.line = []
             self.line = load(open(pickle))
@@ -208,12 +214,15 @@ class Tree(object):
         x, y, z = point = line[0]  # Outermost point
         radius = sqrt(x**2+y**2)
         active = (radius >= self.lower and radius <= self.upper)
+        self.color[radius] = self.color.get(
+                radius,
+                [randint(0, 0x7f) for _ in range(3)])
 
         if active:
             (R, G, B), W = [0xff] * 3, 7
             print "tubulin: %10.10e" % (radius)
         else:
-            (R, G, B), W = [randint(0, 0x7f) for _ in range(3)], 2
+            (R, G, B), W = self.color[radius], 2
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
         text += '  {color: 0x%02x%02x%02x, linewidth: %d}' % (R, G, B, W)
