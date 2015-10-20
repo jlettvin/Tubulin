@@ -85,21 +85,21 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
-                case  48: rotY  = 0e-3; break;  // 0
-                case  49: rotY  = 5e-3; break;  // 1
-                case  37:                       // left
-                case  72:                       // H
-                case 104: rotY += 1e-3; break;  // h
-                case  40:                       // down
-                case  74:                       // J
-                case 106: rotZ += 1e-3; break;  // j
-                case  38:                       // up
-                case  75:                       // K
-                case 107: rotZ -= 1e-3; break;  // k
-                case  39:                       // right
-                case  76:                       // H
-                case 108: rotY -= 1e-3; break;  // l
-                default:                break;
+                case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
+                case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
+                case  37:                                       // left
+                case  72:                                       // H
+                case 104: rotX += 1e-3;                 break;  // h
+                case  40:                                       // down
+                case  74:                                       // J
+                case 106: rotZ += 1e-3;                 break;  // j
+                case  38:                                       // up
+                case  75:                                       // K
+                case 107: rotZ -= 1e-3;                 break;  // k
+                case  39:                                       // right
+                case  76:                                       // H
+                case 108: rotX -= 1e-3;                 break;  // l
+                default:                                break;
             }
         }
 
