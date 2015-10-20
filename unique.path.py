@@ -49,7 +49,7 @@ HEAD = """<!doctype html>
         var height = window.innerHeight * 0.75;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
-        var useKeyboard = true;
+        var useKeyboard = false;
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
