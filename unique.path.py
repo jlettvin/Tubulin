@@ -154,7 +154,7 @@ class Tree(object):
         self.Gmat += '{color: 0x00ff00, linewidth: 7}'
         self.Gmat += ');\n'
         self.Imat = 'var Imat = new THREE.LineBasicMaterial('
-        self.Imat += '{color: 0x777777, linewidth: 3}'
+        self.Imat += '{color: 0x777777, linewidth: 2}'
         self.Imat += ');\n'
 
         self.ring, self.margin = 0.75, 0.010117
@@ -181,10 +181,10 @@ class Tree(object):
         active = (radius >= self.lower and radius <= self.upper)
 
         if active:
-            (R, G, B), W = [0xff] * 3, 5
+            (R, G, B), W = [0xff] * 3, 7
             print "tubulin: %10.10e" % (radius)
         else:
-            (R, G, B), W = [randint(0, 0x7f) for _ in range(3)], 3
+            (R, G, B), W = [randint(0, 0x7f) for _ in range(3)], 2
 
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
         text += '  {color: 0x%02x%02x%02x, linewidth: %d}' % (R, G, B, W)
