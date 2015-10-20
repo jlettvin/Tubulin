@@ -68,7 +68,7 @@ HEAD = """<!doctype html>
                 y = camera.position.y,
                 z = camera.position.z;
 
-            //var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+            var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
             var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
             var cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ);
 
@@ -78,8 +78,8 @@ HEAD = """<!doctype html>
             camera.position.x = z * sinY + x * cosY;
             camera.position.z = z * cosY - x * sinY;
 
-            // camera.position.x = y * sinZ + x * cosZ;
-            // camera.position.y = y * cosZ - x * sinZ;
+            camera.position.x = y * sinZ + x * cosZ;
+            camera.position.y = y * cosZ - x * sinZ;
 
             camera.lookAt(scene.position);
         } 
