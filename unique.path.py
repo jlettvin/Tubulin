@@ -215,27 +215,37 @@ class Tree(object):
         geo = 'geo_%d' % (L)
         seg = 'seg_%d' % (L)
 
+        for S, segment in enumerate(line):
+            x, y, z = segment
+            X, Y = (max(X, x), max(Y, y))
+        radius = sqrt(X**2+Y**2)
+        active = (radius >= self.lower and radius <= self.upper)
+
+        if active:
+            R, G, B = (0xff, 0xff, 0xff)
+        else:
+            R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
+
         text += 'var %s = new THREE.LineBasicMaterial(' % (mat)
-        R, G, B = randint(0, 0x7f), randint(0, 0x7f), randint(0, 0x7f)
         text += '  {color: 0x%02x%02x%02x, linewidth: 3}' % (R, G, B)
         text += ');\n'
 
         text += 'var %s = new THREE.Geometry();\n' % (geo)
 
         text += '%s.vertices.push(' % (geo)
+        X, Y = 0.0, 0.0
         comma = ''
+
         for S, segment in enumerate(line):
-            x, y, z = segment  # The last of these will be the outermost radius
+            x, y, z = segment
+            X, Y = (max(X, x), max(Y, y))
             text += '%snew THREE.Vector3(%f,%f,%f)' % (comma,x, y, z)
             comma = ','
+
         text += ');\n'
         text += 'var %s = new THREE.Line(%s,%s);\n' % (seg, geo, mat)
         text += 'scene.add(%s);\n' % (seg)
         text += '\n'
-
-        #self.radius = sqrt(x**2+y**2)  # This will be the outermost radius
-        #self.active = (
-                #self.radius >= self.lower and self.radius <= self.upper)
 
         return text, geo, seg
 
