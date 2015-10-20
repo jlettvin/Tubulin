@@ -183,7 +183,7 @@ class Tree(object):
         text += 'var R%s = new THREE.Line(R%s,Rmat);\n' % (seg, geo)
         text += 'scene.add(R%s);\n' % (seg)
 
-        matChar = 'G' if (N == 4) else 'I';
+        matChar = 'G' if (N == 0.6) else 'I';
         text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
         text += 'scene.add(G%s);\n' % (seg)
 
