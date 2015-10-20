@@ -80,6 +80,12 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             var code = event.which;
+            switch (event.which) {
+                case  48: rotX  =    0; break;  // 0
+                case 104: rotX += 1e-3; break;  // h
+                case 108: rotX -= 1e-3; break;  // l
+            }
+            /*
             if      (code ==  48) { rotX  =  0.0; } // 0 Stop
             if (code == 104) { rotX += 1e-3; } // H
             if (code == 106) {               } // J
@@ -90,6 +96,7 @@ HEAD = """<!doctype html>
             //else if (code == 74 || code == 106) {               } // J
             //else if (code == 75 || code == 107) {               } // K
             //else if (code == 76 || code == 108) { rotX -= 1e-3; } // H
+            */
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
