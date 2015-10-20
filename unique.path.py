@@ -184,7 +184,7 @@ class Tree(object):
         text += 'scene.add(R%s);\n' % (seg)
 
         #print "%10.10e" % (N)
-        matChar = 'G' if (N > 0.5) else 'I';
+        matChar = 'G' if (N > 0.75 and N < 0.8) else 'I';
         text += 'var G%s = new THREE.Line(G%s,%cmat);\n' % (seg, geo, matChar)
         text += 'scene.add(G%s);\n' % (seg)
 
