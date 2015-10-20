@@ -49,9 +49,10 @@ HEAD = """<!doctype html>
         var height = window.innerHeight * 0.75;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
-        var useKeyboard = true;
+        var rotate = 1.0;
 
         var renderer = new THREE.WebGLRenderer();
+
         renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
 
@@ -59,16 +60,17 @@ HEAD = """<!doctype html>
         camera.position.y = 1;
         camera.position.x = 1;
 
-        var rotX = 0e-3, rotY = 0e-3, rotZ = 0e-3;
+        var rotX = 0e-3, rotY = 5e-3, rotZ = 0e-3;
 
         function checkRotation(){
             var x = camera.position.x,
                 y = camera.position.y,
                 z = camera.position.z;
 
-            var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
-            var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-            var cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ);
+            var rX = rotate * rotX, rY = rotate * rotY, rZ = rotate * rotZ;
+            var cosX = Math.cos(rX), sinX = Math.sin(rX);
+            var cosY = Math.cos(rY), sinY = Math.sin(rY);
+            var cosZ = Math.cos(rZ), sinZ = Math.sin(rZ);
 
             camera.position.y = z * sinX + y * cosX;
             camera.position.z = z * cosX - y * sinX;
@@ -85,8 +87,9 @@ HEAD = """<!doctype html>
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
-                case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
-                case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
+                //case  48: rotX  = rotY  = rotZ  = 0e-3; break;  // 0
+                //case  49: rotX  = rotY  = rotZ  = 5e-3; break;  // 1
+                case 20: (rotate == 1.0) ? 0.0 : 1.0; break;
 
                 case  37:                                       // left
                 case  72:                                       // H
