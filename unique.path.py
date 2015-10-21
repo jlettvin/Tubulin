@@ -46,7 +46,7 @@ HEAD = """<!doctype html>
     <script>
         var scene = new THREE.Scene();
         var width = window.innerWidth * 0.95;
-        var height = window.innerHeight * 0.75;
+        var height = window.innerHeight * 0.70;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
         var rotate = 1.0;
