@@ -59,16 +59,14 @@ canvas{width:100%;height:100%;}
     <canvas id="canvas"></canvas>
     <script>
         var scene = new THREE.Scene();
-        var wPct = 0.95, hPct = 0.70;
-        var width = window.innerWidth * wPct;
-        var height = window.innerHeight * hPct;
-        var camera = new THREE.PerspectiveCamera(100, width/height, 0.1, 1000);
+        var width = window.innerWidth * 0.95;
+        var height = window.innerHeight * 0.70;
+        var ratio = width / height;
+        var camera = new THREE.PerspectiveCamera(100, ratio, 0.1, 1000);
         var spin = 1.0;
         var step = 0;
 
         var renderer = new THREE.WebGLRenderer();
-
-        stats = new Stats();
 
         renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
@@ -78,14 +76,6 @@ canvas{width:100%;height:100%;}
         camera.position.x = 1;
 
         var rotX = 0e-3, rotY = 5e-3, rotZ = 0e-3;
-
-        function onWindowResize() {
-          width  = window.innerWidth * wPct;
-          height = window.innerHeight * hPct;
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-          renderer.setSize(width, height);
-        }
 
         function reverseRot() { rotX = -rotX; rotY = -rotY; rotZ = -rotZ; }
 
@@ -125,7 +115,6 @@ canvas{width:100%;height:100%;}
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
-        window.addEventListener('resize', onWindowResize, false);
 """
 
 TAIL = """
