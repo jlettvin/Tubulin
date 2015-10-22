@@ -3,8 +3,20 @@
 HEAD = """<!doctype html>
 <html>
   <head>
-                <title>Retinal Bipolar Tubulin Polymers</title>
-                <style>canvas { width: 100%; height: 100% }</style>
+   <title>Retinal Bipolar Tubulin Polymers</title>
+   <style>
+canvas{width:100%;height:100%;}
+#stats { position: absolute; top:0; left: 0 }
+   </style>
+   <script
+    src="http://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js">
+   </script>
+   <script
+    src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js">
+   </script>
+   <script
+    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
+   </script>
   </head>
   <body>
     <div align="center"><big><big><big>
@@ -44,22 +56,19 @@ HEAD = """<!doctype html>
     </ul>
     </small></small></small>
     </td></tr></table>
-    <script
-        src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-    </script>
-    <script
-        src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js">
-    </script>
+    <canvas id="canvas"></canvas>
     <script>
         var scene = new THREE.Scene();
-        var width = window.innerWidth * 0.95;
-        var height = window.innerHeight * 0.70;
-        var ratio = width / height;
-        var camera = new THREE.PerspectiveCamera(100, ratio, 0.1, 1000);
+        var wPct = 0.95, hPct = 0.70;
+        var width = window.innerWidth * wPct;
+        var height = window.innerHeight * hPct;
+        var camera = new THREE.PerspectiveCamera(100, width/height, 0.1, 1000);
         var spin = 1.0;
         var step = 0;
 
         var renderer = new THREE.WebGLRenderer();
+
+        stats = new Stats();
 
         renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
@@ -69,6 +78,14 @@ HEAD = """<!doctype html>
         camera.position.x = 1;
 
         var rotX = 0e-3, rotY = 5e-3, rotZ = 0e-3;
+
+        function onWindowResize() {
+          width  = window.innerWidth * wPct;
+          height = window.innerHeight * hPct;
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+        }
 
         function reverseRot() { rotX = -rotX; rotY = -rotY; rotZ = -rotZ; }
 
@@ -108,6 +125,7 @@ HEAD = """<!doctype html>
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
+        window.addEventListener('resize', onWindowResize, false);
 """
 
 TAIL = """
