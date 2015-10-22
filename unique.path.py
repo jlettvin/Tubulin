@@ -98,7 +98,7 @@ HEAD = """<!doctype html>
                 case 40: case 74: case 106: rotY += 1e-3;  break; //  down,J,j
                 case 38: case 75: case 107: rotY -= 1e-3;  break; //    up,K,k
                 case 39: case 76: case 108: rotX += 1e-3;  break; // right,L,l
-                case 44: case 46: case 47: step = 10;      break; //       ,./
+                case 13: case 83: case 115: step = 10;     break; // ENTER,S,s
                 default:                                   break;
             }
         }
