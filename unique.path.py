@@ -156,7 +156,7 @@ TAIL = """
 
 TEMP = """
       var material = new THREE.LineBasicMaterial(
-          {color: 0x0000ff, linewidth: 3});
+          {color: 0x0000ff, linewidth: 2});
       var geometry = new THREE.Geometry();
       geometry.vertices.push(
               new THREE.Vector3( -2, -2, -2 ),
@@ -213,10 +213,10 @@ class Tree(object):
                         triple = [float(f) for f in triple[1:-1].split(',')]
                         self.line[-1] += [triple,]
         self.Rmat = 'var Rmat = new THREE.LineBasicMaterial('
-        self.Rmat += '{color: 0xff0000, linewidth: 5}'
+        self.Rmat += '{color: 0xff0000, linewidth: 4}'
         self.Rmat += ');\n'
         self.Gmat = 'var Gmat = new THREE.LineBasicMaterial('
-        self.Gmat += '{color: 0x00ff00, linewidth: 5}'
+        self.Gmat += '{color: 0x00ff00, linewidth: 4}'
         self.Gmat += ');\n'
         self.Imat = 'var Imat = new THREE.LineBasicMaterial('
         self.Imat += '{color: 0x777777, linewidth: 2}'
@@ -252,7 +252,7 @@ class Tree(object):
                 [randint(0, 0x7f) for _ in range(3)])
 
         if active:
-            (R, G, B), W = [0xff] * 3, 7
+            (R, G, B), W = [0xff] * 3, 4
             print "tubulin: %10.10e" % (radius),
         else:
             (R, G, B), W = self.color[radius], 2
