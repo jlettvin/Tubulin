@@ -19,6 +19,7 @@ canvas{width:100%;height:100%;}
    </script>
   </head>
   <body>
+    <canvas id="canvas"></canvas>
     <div align="center"><big><big><big>
     Dendritic Tubulin in One Retinal Bipolar Species
     </big></big></big><br />
@@ -56,7 +57,6 @@ canvas{width:100%;height:100%;}
     </ul>
     </small></small></small>
     </td></tr></table>
-    <canvas id="canvas"></canvas>
     <script>
         var scene = new THREE.Scene();
         var wPct = 0.95, hPct = 0.70;
