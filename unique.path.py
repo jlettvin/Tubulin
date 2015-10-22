@@ -3,20 +3,8 @@
 HEAD = """<!doctype html>
 <html>
   <head>
-   <title>Retinal Bipolar Tubulin Polymers</title>
-   <style>
-canvas{width:100%;height:100%;}
-#stats { position: absolute; top:0; left: 0 }
-   </style>
-   <script
-    src="http://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js">
-   </script>
-   <script
-    src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js">
-   </script>
-   <script
-    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
-   </script>
+                <title>Retinal Bipolar Tubulin Polymers</title>
+                <style>canvas { width: 100%; height: 100% }</style>
   </head>
   <body>
     <div align="center"><big><big><big>
@@ -56,7 +44,12 @@ canvas{width:100%;height:100%;}
     </ul>
     </small></small></small>
     </td></tr></table>
-    <canvas id="canvas"></canvas>
+    <script
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <script
+        src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js">
+    </script>
     <script>
         var scene = new THREE.Scene();
         var width = window.innerWidth * 0.95;
