@@ -130,9 +130,10 @@ canvas{width:100%;height:100%;}
 
 TAIL = """
       var render = function () {
-              requestAnimationFrame(render);
-              performRot();
-              renderer.render(scene, camera);
+        stats.update();
+        requestAnimationFrame(render);
+        performRot();
+        renderer.render(scene, camera);
       };
 
       render();
