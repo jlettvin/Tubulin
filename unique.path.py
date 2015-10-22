@@ -93,6 +93,7 @@ HEAD = """<!doctype html>
         } 
 
         function onDocumentKeyDown(event) { 
+            event.preventDefault();
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
                 case 32: spin = (spin == 1.0) ? 0.0 : 1.0; break; //     SPACE
