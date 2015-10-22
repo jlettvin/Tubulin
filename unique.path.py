@@ -55,7 +55,7 @@ HEAD = """<!doctype html>
         var width = window.innerWidth * 0.95;
         var height = window.innerHeight * 0.70;
         var ratio = width / height;
-        var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
+        var camera = new THREE.PerspectiveCamera(100, ratio, 0.1, 1000);
         var rotate = 1.0;
 
         var renderer = new THREE.WebGLRenderer();
