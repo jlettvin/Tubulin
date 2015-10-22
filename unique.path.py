@@ -57,6 +57,8 @@ HEAD = """<!doctype html>
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(100, ratio, 0.1, 1000);
         var rotate = 1.0;
+        var step = false;
+        var temp;
 
         var renderer = new THREE.WebGLRenderer();
 
@@ -74,6 +76,8 @@ HEAD = """<!doctype html>
                 y = camera.position.y,
                 z = camera.position.z;
 
+            if(step) { temp = rotate; rotate = 1.0; }
+            
             var rX = rotate * rotX, rY = rotate * rotY, rZ = rotate * rotZ;
 
             var cosX = Math.cos(rX), sinX = Math.sin(rX);
@@ -91,6 +95,8 @@ HEAD = """<!doctype html>
             camera.position.y = y * cosZ - x * sinZ;
              */
 
+            if(step) { rotate = temp; step = false; }
+
             camera.lookAt(scene.position);
         } 
 
@@ -102,6 +108,7 @@ HEAD = """<!doctype html>
                 case 40: case 74: case 106: rotY += 1e-3; break; //  down,J,j
                 case 38: case 75: case 107: rotY -= 1e-3; break; //    up,K,k
                 case 39: case 76: case 108: rotX += 1e-3; break; // right,L,l
+                case 46: step = true;                     break; //    PERIOD
                 default:                                  break;
             }
         }
