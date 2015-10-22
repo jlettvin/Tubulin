@@ -75,7 +75,7 @@ CODE = """\
         var step = 0;
 
         var canvas   = document.getElementById('canvas'); 
-        var renderer = new THREE.WebGLRenderer({canvas: canvas});
+        var renderer = new THREE.WebGLRenderer({canvas:canvas,antialias:true});
         var stats = new Stats();
 
         renderer.setSize(width, height);
