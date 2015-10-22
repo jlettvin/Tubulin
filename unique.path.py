@@ -74,12 +74,16 @@ CODE = """\
         var spin = 1.0;
         var step = 0;
 
-        var renderer = new THREE.WebGLRenderer();
+        var canvas   = document.getElementById('canvas'); 
+        var renderer = new THREE.WebGLRenderer({canvas: canvas});
         var stats = new Stats();
 
         renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
         document.body.appendChild(stats.domElement);
+
+        canvas.width = width; canvas.height = height;
+        renderer.setViewport(0, 0, canvas.clientWidth, canvas.clientHeight);
 
         camera.position.z = 1;
         camera.position.y = 1;
