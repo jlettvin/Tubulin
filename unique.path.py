@@ -72,11 +72,13 @@ HEAD = """<!doctype html>
             var cosY = Math.cos(rY), sinY = Math.sin(rY);
             var cosZ = Math.cos(rZ), sinZ = Math.sin(rZ);
 
+            /*
             camera.position.y = z * sinX + y * cosX;
             camera.position.z = z * cosX - y * sinX;
 
             camera.position.x = z * sinY + x * cosY;
             camera.position.z = z * cosY - x * sinY;
+             */
 
             camera.position.x = y * sinZ + x * cosZ;
             camera.position.y = y * cosZ - x * sinZ;
@@ -89,9 +91,11 @@ HEAD = """<!doctype html>
             switch (event.which) {
                 case  32: rotate=(rotate==1.0)?0.0:1.0; break;  // SPACE
 
+                /*
                 case  37:                                       // left
                 case  72:                                       // H
                 case 104: rotX += 1e-3;                 break;  // h
+                 */
 
                 case  40:                                       // down
                 case  74:                                       // J
@@ -101,9 +105,11 @@ HEAD = """<!doctype html>
                 case  75:                                       // K
                 case 107: rotZ -= 1e-3;                 break;  // k
 
+                /*
                 case  39:                                       // right
                 case  76:                                       // H
                 case 108: rotX -= 1e-3;                 break;  // l
+                 */
 
                 default:                                break;
             }
