@@ -74,8 +74,8 @@ HEAD = """<!doctype html>
             var x = camera.position.x,
                 y = camera.position.y,
                 z = camera.position.z;
-            var temp;
-            if(step > 0) { temp = spin; spin = 1.0; } /***********************/
+            var temp = spin;
+            if(step > 0) { spin = 1.0; } /************************************/
             var rX = spin * rotX, rY = spin * rotY, rZ = spin * rotZ;
             var cosX = Math.cos(rX), sinX = Math.sin(rX); /*******************/
             camera.position.y = z * sinX + y * cosX;
@@ -98,7 +98,7 @@ HEAD = """<!doctype html>
                 case 40: case 74: case 106: rotY += 1e-3;  break; //  down,J,j
                 case 38: case 75: case 107: rotY -= 1e-3;  break; //    up,K,k
                 case 39: case 76: case 108: rotX += 1e-3;  break; // right,L,l
-                case 46: step = 10;                        break; //    PERIOD
+                case 44: case 46: case 47: step = 10;      break; //       ,./
                 default:                                   break;
             }
         }
