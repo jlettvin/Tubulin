@@ -213,10 +213,10 @@ class Tree(object):
                         triple = [float(f) for f in triple[1:-1].split(',')]
                         self.line[-1] += [triple,]
         self.Rmat = 'var Rmat = new THREE.LineBasicMaterial('
-        self.Rmat += '{color: 0xff0000, linewidth: 4}'
+        self.Rmat += '{color: 0xff0000, linewidth: 3}'
         self.Rmat += ');\n'
         self.Gmat = 'var Gmat = new THREE.LineBasicMaterial('
-        self.Gmat += '{color: 0x00ff00, linewidth: 4}'
+        self.Gmat += '{color: 0x00ff00, linewidth: 3}'
         self.Gmat += ');\n'
         self.Imat = 'var Imat = new THREE.LineBasicMaterial('
         self.Imat += '{color: 0x777777, linewidth: 2}'
@@ -252,7 +252,7 @@ class Tree(object):
                 [randint(0, 0x7f) for _ in range(3)])
 
         if active:
-            (R, G, B), W = [0xff] * 3, 4
+            (R, G, B), W = [0xff] * 3, 3
             print "tubulin: %10.10e" % (radius),
         else:
             (R, G, B), W = self.color[radius], 2
