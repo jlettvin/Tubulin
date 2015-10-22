@@ -28,7 +28,7 @@ HEAD = """<!doctype html>
     &uarr;
     <!-- &rarr; -->
     change rotation speeds.
-    &lt;SPACE&rt; toggles motion.
+    &lt;SPACE&gt; toggles motion.
     </b></li>
     </ul>
     </small></small></small>
