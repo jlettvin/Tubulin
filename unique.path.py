@@ -56,9 +56,8 @@ HEAD = """<!doctype html>
         var height = window.innerHeight * 0.70;
         var ratio = width / height;
         var camera = new THREE.PerspectiveCamera(100, ratio, 0.1, 1000);
-        var rotate = 1.0;
-        var step = false;
-        var temp;
+        var spin = 1.0;
+        var step = 0;
 
         var renderer = new THREE.WebGLRenderer();
 
@@ -75,41 +74,32 @@ HEAD = """<!doctype html>
             var x = camera.position.x,
                 y = camera.position.y,
                 z = camera.position.z;
-
-            if(step) { temp = rotate; rotate = 1.0; }
-            
-            var rX = rotate * rotX, rY = rotate * rotY, rZ = rotate * rotZ;
-
-            var cosX = Math.cos(rX), sinX = Math.sin(rX);
-            var cosY = Math.cos(rY), sinY = Math.sin(rY);
-            var cosZ = Math.cos(rZ), sinZ = Math.sin(rZ);
-
+            var temp;
+            if(step > 0) { temp = spin; spin = 1.0; } /***********************/
+            var rX = spin * rotX, rY = spin * rotY, rZ = spin * rotZ;
+            var cosX = Math.cos(rX), sinX = Math.sin(rX); /*******************/
             camera.position.y = z * sinX + y * cosX;
             camera.position.z = z * cosX - y * sinX;
-
+            var cosY = Math.cos(rY), sinY = Math.sin(rY); /*******************/
             camera.position.x = z * sinY + x * cosY;
             camera.position.z = z * cosY - x * sinY;
-
-            /*
-            camera.position.x = y * sinZ + x * cosZ;
-            camera.position.y = y * cosZ - x * sinZ;
-             */
-
-            if(step) { rotate = temp; step = false; }
-
+            // var cosZ = Math.cos(rZ), sinZ = Math.sin(rZ); /****************/
+            // camera.position.x = y * sinZ + x * cosZ;
+            // camera.position.y = y * cosZ - x * sinZ;
+            if(step > 0) { spin = temp; step--; } /***************************/
             camera.lookAt(scene.position);
         } 
 
         function onDocumentKeyDown(event) { 
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
-                case 32: rotate=(rotate==1.0)?0.0:1.0;    break; //     SPACE
-                case 37: case 72: case 104: rotX -= 1e-3; break; //  left,H,h
-                case 40: case 74: case 106: rotY += 1e-3; break; //  down,J,j
-                case 38: case 75: case 107: rotY -= 1e-3; break; //    up,K,k
-                case 39: case 76: case 108: rotX += 1e-3; break; // right,L,l
-                case 46: step = true;                     break; //    PERIOD
-                default:                                  break;
+                case 32: spin = (spin == 1.0) ? 0.0 : 1.0; break; //     SPACE
+                case 37: case 72: case 104: rotX -= 1e-3;  break; //  left,H,h
+                case 40: case 74: case 106: rotY += 1e-3;  break; //  down,J,j
+                case 38: case 75: case 107: rotY -= 1e-3;  break; //    up,K,k
+                case 39: case 76: case 108: rotX += 1e-3;  break; // right,L,l
+                case 46: step = 10;                        break; //    PERIOD
+                default:                                   break;
             }
         }
 
