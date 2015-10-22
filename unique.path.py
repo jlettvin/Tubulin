@@ -70,7 +70,9 @@ HEAD = """<!doctype html>
 
         var rotX = 0e-3, rotY = 5e-3, rotZ = 0e-3;
 
-        function checkRotation(){
+        function reverseRot() { rotX = -rotX; rotY = -rotY; rotZ = -rotZ; }
+
+        function performRot() {
             var x = camera.position.x,
                 y = camera.position.y,
                 z = camera.position.z;
@@ -94,7 +96,7 @@ HEAD = """<!doctype html>
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
                 case 32: spin = (spin == 1.0) ? 0.0 : 1.0; break; //     SPACE
-                case 45: case 77: case 109: rotX=-rotX;rotY=-rotY;break;//-,M,m
+                case 45: case 77: case 109: reverseRot();  break; //-,M,m
                 case 37: case 72: case 104: rotX -= 1e-3;  break; //  left,H,h
                 case 40: case 74: case 106: rotY += 1e-3;  break; //  down,J,j
                 case 38: case 75: case 107: rotY -= 1e-3;  break; //    up,K,k
@@ -110,7 +112,7 @@ HEAD = """<!doctype html>
 TAIL = """
       var render = function () {
               requestAnimationFrame(render);
-              checkRotation();
+              performRot();
               renderer.render(scene, camera);
       };
 
