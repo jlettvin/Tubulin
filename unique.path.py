@@ -67,11 +67,11 @@ canvas{width:100%;height:100%;}
         var step = 0;
 
         var renderer = new THREE.WebGLRenderer();
-
-        stats = new Stats();
+        var stats = new Stats();
 
         renderer.setSize(width, height);
         document.body.appendChild(renderer.domElement);
+        document.body.appendChild(stats.domElement);
 
         camera.position.z = 1;
         camera.position.y = 1;
