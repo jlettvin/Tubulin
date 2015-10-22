@@ -281,7 +281,7 @@ class Tree(object):
 
         return text, geo, seg
 
-    def transientVectorSensors(self, L, geo, seg, point, scale=3e-2):
+    def transientVectorSensors(self, L, geo, seg, point, scale=8e-2):
         text = ''
         x, y, z = point
         radius = sqrt(x**2+y**2)
