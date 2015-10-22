@@ -94,6 +94,7 @@ HEAD = """<!doctype html>
             // Get the key code of the pressed key (using vi bindings)
             switch (event.which) {
                 case 32: spin = (spin == 1.0) ? 0.0 : 1.0; break; //     SPACE
+                case 45: rotX = -rotX; rotY = -rotY;       break; //     MINUS
                 case 37: case 72: case 104: rotX -= 1e-3;  break; //  left,H,h
                 case 40: case 74: case 106: rotY += 1e-3;  break; //  down,J,j
                 case 38: case 75: case 107: rotY -= 1e-3;  break; //    up,K,k
