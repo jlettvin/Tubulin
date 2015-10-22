@@ -7,7 +7,7 @@ HEAD = """\
    <title>Retinal Bipolar Tubulin Polymers</title>
    <style>
 canvas{width:100%;height:100%;}
-#stats { position: absolute; top:0; left: 0 }
+#stats{position:absolute;bottom:0;left:0;}
    </style>
    <script
     src="http://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js">
