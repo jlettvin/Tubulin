@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-HEAD = """<!doctype html>
+HEAD = """\
+<!doctype html>
 <html>
   <head>
    <title>Retinal Bipolar Tubulin Polymers</title>
@@ -18,11 +19,15 @@ canvas{width:100%;height:100%;}
     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
    </script>
   </head>
+"""
+
+BODY = """\
   <body>
     <canvas id="canvas"></canvas>
     <div align="center"><big><big><big>
     Dendritic Tubulin in One Retinal Bipolar Species
     </big></big></big><br />
+    %s<br />
     <small><small><small>
     Copyright(c)2013-2015 Jonathan D. Lettvin, All Rights Reserved.
     </small></small></small>
@@ -57,6 +62,9 @@ canvas{width:100%;height:100%;}
     </ul>
     </small></small></small>
     </td></tr></table>
+"""
+
+CODE = """\
     <script>
         var scene = new THREE.Scene();
         var wPct = 0.95, hPct = 0.70;
@@ -138,12 +146,11 @@ TAIL = """
 
       render();
     </script>
-    %s
   </body>
 </html>
 """
 
-BODY = """
+TEMP = """
       var material = new THREE.LineBasicMaterial(
           {color: 0x0000ff, linewidth: 3});
       var geometry = new THREE.Geometry();
@@ -311,13 +318,15 @@ class Tree(object):
     def __str__(self):
         self.body = ''
         self.body += HEAD
+        self.body += BODY % (self.timestamp)
+        self.body += CODE
         self.body += self.Rmat+self.Gmat+self.Imat;
         for L, line in enumerate(self.line):
             text, geo, seg = self.tubulin(L, line)
             self.body += text
             self.body += self.transientVectorSensors(L, geo, seg, line[0])
             self.rule(N=77)
-        self.body += TAIL % (self.timestamp)
+        self.body += TAIL
         return self.body
 
 seed()
