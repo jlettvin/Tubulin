@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+ <title>test</title>
+ <style>
+canvas{width:100%;height:100%;}
+#stats{position:absolute; bottom:0; left:0;}
+ </style>
+ </head>
+ <body>
+  <canvas id="canvas"></canvas>
+  <script
+   src="http://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js">
+  </script>
+  <script
+   src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js">
+  </script>
+  <script
+   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
+  </script>
+  <script>
+
+// variables __________________________________________________________________
+
+var X        = 21, Y = 91;
+var X2       = X / 2.0, Y2 = Y / 2.0;
+var incX     = 1.0 / X2, incY = 1.0 / Y2;
+var offX     = [], offY = [];
+var intensity= [0.3, 0.6, 0.2, 0.5, 0.4, 0.7];
+var wPct     = 0.98, hPct = 0.97;
+var width    = window.innerWidth * wPct, height = window.innerHeight * hPct;
+var canvas   = document.getElementById('canvas'); 
+var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
+var scene    = new THREE.Scene();
+var camera   = new THREE.PerspectiveCamera(50, width/height, 0.1, 1000);
+var stats    = new Stats();
+var matYX    = new Array(Y);
+var tmpY     = new Array(Y);
+var xPulse   = 0;
+var pulsing  = false;
+var always   = false;
+
+var rotX     = 5e-3, rotY = 5e-3, rotZ = 5e-3;
+var step     = 1, spin = 1.0;
+var tgtRotX  = 0, tgtRotMouseX = 0, mouseX = 0, mouseXMouse = 0;
+var tgtRotY  = 0, tgtRotMouseY = 0, mouseY = 0, mouseYMouse = 0;
+
+// classes ____________________________________________________________________
+
+/*
+class Tubulin {
+  constructor(tip, base, waypoints, concentrators, terminal) {
+  }
+};
+
+class Neuron {
+  constructor(hillock, selectors) {
+    // hillock: (x,y,z) concentrator center.
+    // selectors: list of Ntuples of (x,y,z) for spine, waypoints, and bouton.
+  }
+};
+*/
+
+// functions __________________________________________________________________
+
+function startPulse() {
+  if(!pulsing) { xPulse = 0; pulsing = true; }
+}
+
+function storePulse() {
+  for(y=0; y<Y; y++) tmpY[y] = matYX[y][xPulse].color.getHex();
+}
+
+function resetPulse() {
+  for(y=0; y<Y; y++) matYX[y][xPulse].color.setHex(tmpY[y]);
+}
+
+function causePulse() {
+  for(y=0; y<Y; y++) matYX[y][xPulse].color.setRGB(1.0, 1.0, 1.0);
+}
+
+function materials() {
+  var x, y, M = intensity.length - 1;
+  for(y=0; y< Y; y++) offY[y] = (y-Y2) / Y2;
+  for(x=0; x<=X; x++) offX[x] = (x-X2) / X2;
+  for(y=0; y< Y; y++) {
+    matYX[y] = new Array(X);
+    var g = offY[y];
+    for(x=0; x<X; x++) {
+      var a = offX[x], b = offX[x+1];
+      matYX[y][x] = new THREE.LineBasicMaterial({linewidth:2});
+      matYX[y][x].color.setRGB(intensity[y&M],intensity[x&M],0.0);
+      var geo = new THREE.Geometry();
+      geo.vertices.push(new THREE.Vector3(a+g, a, a));
+      geo.vertices.push(new THREE.Vector3(b+g, b, b));
+      var seg = new THREE.Line(geo, matYX[y][x]);
+      scene.add(seg);
+    }
+  }
+  storePulse();
+}
+
+function propagate() {
+  if(pulsing) {
+    resetPulse();
+    xPulse = (xPulse + 1) % X;
+    if(xPulse == 0) {
+      pulsing = always;
+    } else {
+      storePulse();
+      causePulse();
+    }
+  }
+}
+
+function setup() {
+  materials();
+  canvas.width = width; canvas.height = height;
+  renderer.setViewport(0, 0, canvas.clientWidth, canvas.clientHeight);
+  camera.position.z = 5;
+  renderer.setSize(width, height);
+  document.body.appendChild(renderer.domElement);
+  document.body.appendChild(   stats.domElement);
+  document.addEventListener(  "keydown", onDocumentKeyDown  , false);
+  document.addEventListener("mousedown", onDocumentMouseDown, false );
+  window.addEventListener  (   "resize", onWindowResize     , false);
+}
+
+function onDocumentKeyDown(event) { 
+  switch (event.which) {
+    case 13 /*ENTER*/: always = !always; startPulse(); break;
+    case 32 /*SPACE*/: startPulse(); break;
+  }
+}
+
+function onDocumentMouseDown(event) {
+  event.preventDefault();
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  document.addEventListener('mouseup', onDocumentMouseUp, false);
+  document.addEventListener('mouseout', onDocumentMouseOut, false);
+  mouseXMouse = event.clientX - windowHalfX;
+  tgtRotMouseX = tgtRotX;
+  mouseYMouse = event.clientY - windowHalfY;
+  tgtRotMouseY = tgtRotY;
+}
+
+function onDocumentMouseMove(event) {
+  mouseX = event.clientX - windowHalfX;
+  mouseY = event.clientY - windowHalfY;
+  tgtRotY = tgtRotMouseY + 
+    (mouseY - mouseYMouse) * 0.02;
+  tgtRotX = tgtRotMouseX + 
+    (mouseX - mouseXMouse) * 0.02;
+}
+
+function onDocumentMouseUp(event) {
+  document.removeEventListener('mousemove', onDocumentMouseMove, false);
+  document.removeEventListener('mouseup', onDocumentMouseUp, false);
+  document.removeEventListener('mouseout', onDocumentMouseOut, false);
+}
+
+function onDocumentMouseOut(event) {
+  document.removeEventListener('mousemove', onDocumentMouseMove, false);
+  document.removeEventListener('mouseup', onDocumentMouseUp, false);
+  document.removeEventListener('mouseout', onDocumentMouseOut, false);
+}
+
+function onWindowResize() {
+ width  = window.innerWidth * wPct, height = window.innerHeight * hPct;
+ camera.aspect = width / height;
+ camera.updateProjectionMatrix();
+ renderer.setSize(width, height);
+}
+
+function rotate() {
+  var campos = new THREE.Vector3(camera.position);
+  var x = camera.position.x,
+      y = camera.position.y,
+      z = camera.position.z;
+  var temp = spin;
+  if(step > 0) { spin = 1.0; }
+  var rX = spin * rotX, rY = spin * rotY, rZ = spin * rotZ;
+  var cosX = Math.cos(rX), sinX = Math.sin(rX);
+  camera.position.y = z * sinX + y * cosX;
+  camera.position.z = z * cosX - y * sinX;
+  var cosY = Math.cos(rY), sinY = Math.sin(rY);
+  camera.position.x = z * sinY + x * cosY;
+  camera.position.z = z * cosY - x * sinY;
+  // var cosZ = Math.cos(rZ), sinZ = Math.sin(rZ);
+  // camera.position.x = y * sinZ + x * cosZ;
+  // camera.position.y = y * cosZ - x * sinZ;
+  if(step > 0) { spin = temp; step--; }
+  camera.lookAt(scene.position);
+}
+
+function render() {
+  stats.update();
+  requestAnimationFrame(render);
+  rotate();
+  propagate();
+  camera.lookAt(scene.position);
+  renderer.render(scene, camera);
+}
+
+function main() {
+  setup();
+  render();
+}
+// main _______________________________________________________________________
+main();
+  </script>
+ </body>
+</html>
