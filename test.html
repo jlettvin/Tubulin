@@ -39,6 +39,7 @@ var tmpY     = new Array(Y);
 var xPulse   = 0;
 var pulsing  = false;
 var always   = false;
+var single   = false;
 
 var rotX     = 5e-3, rotY = 5e-3, rotZ = 5e-3;
 var step     = 1, spin = 1.0;
@@ -64,19 +65,26 @@ class Neuron {
 // functions __________________________________________________________________
 
 function startPulse() {
-  if(!pulsing) { xPulse = 0; pulsing = true; }
+  if(!pulsing) { xPulse = 0; pulsing = true; single = false; }
+}
+
+function startOne() {
+  if(!pulsing) { xPulse = 0; pulsing = true; single = true; }
 }
 
 function storePulse() {
-  for(y=0; y<Y; y++) tmpY[y] = matYX[y][xPulse].color.getHex();
+  var last = single ? 1 : Y;
+  for(y=0; y<last; y++) tmpY[y] = matYX[y][xPulse].color.getHex();
 }
 
 function resetPulse() {
-  for(y=0; y<Y; y++) matYX[y][xPulse].color.setHex(tmpY[y]);
+  var last = single ? 1 : Y;
+  for(y=0; y<last; y++) matYX[y][xPulse].color.setHex(tmpY[y]);
 }
 
 function causePulse() {
-  for(y=0; y<Y; y++) matYX[y][xPulse].color.setRGB(1.0, 1.0, 1.0);
+  var last = single ? 1 : Y;
+  for(y=0; y<last; y++) matYX[y][xPulse].color.setRGB(1.0, 1.0, 1.0);
 }
 
 function materials() {
@@ -130,6 +138,7 @@ function onDocumentKeyDown(event) {
   switch (event.which) {
     case 13 /*ENTER*/: always = !always; startPulse(); break;
     case 32 /*SPACE*/: startPulse(); break;
+    case  9 /* TAB */: startOne(); break;
   }
 }
 
