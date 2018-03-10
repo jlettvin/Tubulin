@@ -264,9 +264,9 @@ render();
     </small></small></small>
     </td></tr></table>
     """)
-                with TAG('script', src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"):
+                with TAG('script', src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"):
                     pass
-                with TAG('script', src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"):
+                with TAG('script', src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"):
                     pass
                 with TAG('script'):
                     self.tag_material('R', 0xff0000)
